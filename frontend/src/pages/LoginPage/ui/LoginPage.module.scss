@@ -1,0 +1,51 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right {
+  flex: 1;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  background-color: #FFFFFF;
+  padding: 40px;
+  max-width: 1200px;
+  max-height: 600px;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+}
+
+.field {
+  position: relative;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  height: 56px;
+
+}
+
