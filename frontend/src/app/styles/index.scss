@@ -1,7 +1,9 @@
 @use "reset";
 @use "themes/light";
+@use "../variables/global";
 
 .app {
   min-height: 100vh;
   background: var(--bg-color);
+  font-family: var(--font-family-main);
 }

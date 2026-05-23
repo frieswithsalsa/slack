@@ -2,17 +2,22 @@
   display: flex;
   align-items: center;
   width: 100%;
-  height: 56px;
+  height: var(--header-height);
   background: #FFFFFF;
-  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075)
+  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+  font-size: var(--font-size-l);
+  
 }
 
 .links {
-  margin-left: 100px;
   margin-right: auto;
-  font-size: 1.25rem;
 }
 
 .mainLink {
-  margin-right: 16px;
+  margin-left: 90px;
+  text-decoration: none;
+}
+
+.mainLink:visited {
+  color: black;
 }
