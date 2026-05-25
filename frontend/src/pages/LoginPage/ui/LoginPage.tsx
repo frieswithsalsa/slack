@@ -4,7 +4,7 @@ import {LoginForm} from "@/features/authByUsername/ui/LoginForm";
 
 const LoginPage = () => {
     return (
-        <div className={classNames(styles.wrapper)}>
+        <div className={classNames(styles.wrapper, {}, [])}>
             <LoginForm/>
         </div>
     );

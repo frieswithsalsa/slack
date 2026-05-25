@@ -4,7 +4,8 @@ import {LoginFormData} from "@/features/authByUsername/model/types";
 import {useForm, SubmitHandler} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup';
 import {schema} from "@/features/authByUsername/model/validation";
-
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 interface LoginFormProps {
     className?: string;
@@ -20,7 +21,14 @@ export const LoginForm = ({className}: LoginFormProps) => {
         resolver: yupResolver(schema)
     });
 
-    const onSubmit: SubmitHandler<LoginFormData> = data => console.log(data);
+    const navigate = useNavigate();
+
+    const onSubmit: SubmitHandler<LoginFormData> = async data => {
+        const response = await axios.post('/api/v1/login', data);
+        localStorage.setItem("authToken", response.data.token);
+        navigate('/')
+        console.log(response.data);
+    }
 
     return (
         <div className={classNames(cls.LoginForm, {}, [className])}>
