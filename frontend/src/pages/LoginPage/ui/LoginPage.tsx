@@ -1,6 +1,6 @@
 import styles from './LoginPage.module.scss';
 import {classNames} from "@/shared/lib/classNames";
-import {LoginForm} from "@/features/AuthByUserName/ui/LoginForm";
+import {LoginForm} from "@/features/authByUsername/ui/LoginForm";
 
 const LoginPage = () => {
     return (

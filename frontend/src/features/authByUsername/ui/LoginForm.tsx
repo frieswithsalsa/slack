@@ -1,6 +1,6 @@
 import {classNames} from "@/shared/lib/classNames";
 import cls from './LoginForm.module.scss'
-import {LoginFormData} from "@/features/AuthByUserName/model/types";
+import {LoginFormData} from "@/features/authByUsername/model/types";
 import {useForm, SubmitHandler} from 'react-hook-form'
 
 
@@ -11,7 +11,13 @@ interface LoginFormProps {
 
 export const LoginForm = ({className}: LoginFormProps) => {
 
-    const {register, handleSubmit, watch, formState: {errors}} = useForm<LoginFormData>();
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: {errors}
+    } = useForm<LoginFormData>();
+
     const onSubmit: SubmitHandler<LoginFormData> = data => console.log(data);
 
     console.log(watch("username"))
