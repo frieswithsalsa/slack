@@ -9,8 +9,6 @@ const AppRouter = () => {
 
 
             <Routes>
-                <Route path="*" element={<LoginPage/>}/>
-
                 {Object.values(RouteConfig).map(({element, path,}) => (
                     <Route
                         key={path}
