@@ -1,6 +1,7 @@
 import {Suspense} from 'react';
 import {Route, Routes, Navigate} from "react-router-dom";
 import {RouteConfig} from "@/shared/config/routeConfig/routeConfig";
+import {LoginPage} from "@/pages/LoginPage";
 
 const AppRouter = () => {
     return (
@@ -8,7 +9,7 @@ const AppRouter = () => {
 
 
             <Routes>
-                <Route path="/" element={<Navigate to="/login" replace/>}/>
+                <Route path="*" element={<LoginPage/>}/>
 
                 {Object.values(RouteConfig).map(({element, path,}) => (
                     <Route
