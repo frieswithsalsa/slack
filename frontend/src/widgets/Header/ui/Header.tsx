@@ -11,9 +11,8 @@ export const Header = ({className}: HeaderProps) => {
     return (
         <div className={cls.Header}>
             <div className={cls.links}>
-                <Link className={cls.mainLink} to="/login">Slack</Link>
+                <Link className={cls.mainLink} to="/">Slack</Link>
             </div>
-
         </div>
     );
 };

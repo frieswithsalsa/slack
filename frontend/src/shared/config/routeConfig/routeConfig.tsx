@@ -3,6 +3,7 @@ import {LoginPage} from "@/pages/LoginPage";
 import {NotFoundPage} from "@/pages/NotFoundPage";
 import {MainPage} from "@/pages/MainPage";
 
+
 export enum AppRoutes {
     MAIN = "main",
     LOGIN = 'login',
@@ -15,10 +16,17 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.PAGE_NOT_FOUND]: '*',
 }
 
-export const RouteConfig: Record<AppRoutes, RouteProps> = {
+export interface AppRouteProps {
+    authOnly?: boolean;
+    path: string;
+    element: React.ReactNode;
+}
+
+export const RouteConfig: Record<AppRoutes, AppRouteProps> = {
     [AppRoutes.MAIN]: {
         path: RoutePath.main,
-        element: <MainPage/>
+        element: <MainPage/>,
+        authOnly: true,
     },
 
     [AppRoutes.LOGIN]: {

@@ -1,17 +1,23 @@
 import {classNames} from "@/shared/lib/classNames";
 import cls from './LoginForm.module.scss'
 import {LoginFormData} from "@/features/authByUsername/model/types";
-import {useForm, SubmitHandler} from 'react-hook-form'
+import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup';
+import {authByUsername} from "@/features/authByUsername/model/services/authByUsername";
 import {schema} from "@/features/authByUsername/model/validation";
-import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {SubmitHandler} from 'react-hook-form';
+import {useState} from "react";
+import {useDispatch} from "react-redux";
+import {AppDispatch} from "@/app/store";
 
 interface LoginFormProps {
     className?: string;
 }
 
 export const LoginForm = ({className}: LoginFormProps) => {
+    const [authError, setAuthError] = useState<Error | null>(null);
+    const navigate = useNavigate();
 
     const {
         register,
@@ -21,13 +27,17 @@ export const LoginForm = ({className}: LoginFormProps) => {
         resolver: yupResolver(schema)
     });
 
-    const navigate = useNavigate();
+    const dispatch = useDispatch<AppDispatch>();
 
-    const onSubmit: SubmitHandler<LoginFormData> = async data => {
-        const response = await axios.post('/api/v1/login', data);
-        localStorage.setItem("authToken", response.data.token);
-        navigate('/')
-        console.log(response.data);
+    const onSubmit: SubmitHandler<LoginFormData> = async (data,) => {
+        try {
+            await authByUsername(data, dispatch);
+            navigate('/')
+        } catch (e) {
+            if (e instanceof Error) {
+                setAuthError(e.message);
+            }
+        }
     }
 
     return (
@@ -46,6 +56,7 @@ export const LoginForm = ({className}: LoginFormProps) => {
                 />
                 {errors.password && <p className={cls.errorText}>{errors.password.message}</p>}
                 <input type="submit"/>
+                {authError && <p className={cls.errorText}>{authError}</p>}
                 <p className={cls.signupRow}>
                     Нет аккаунта?
                     <a className={cls.signupLink} href="#">Регистрация</a>

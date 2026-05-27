@@ -1,19 +1,24 @@
 import {Suspense} from 'react';
 import {Route, Routes, Navigate} from "react-router-dom";
-import {RouteConfig} from "@/shared/config/routeConfig/routeConfig";
-import {LoginPage} from "@/pages/LoginPage";
+import {RouteConfig, AppRouteProps} from "@/shared/config/routeConfig/routeConfig";
+import {useSelector} from "react-redux";
+import {selectIsAuthed} from "@/entities/user";
 
 const AppRouter = () => {
+    const isAuthed = useSelector(selectIsAuthed);
+
     return (
         <Suspense fallback={<div>Loading</div>}>
 
-
             <Routes>
-                {Object.values(RouteConfig).map(({element, path,}) => (
+                {Object.values(RouteConfig).map(({element, path, authOnly}: AppRouteProps) => (
                     <Route
                         key={path}
                         path={path}
-                        element={element}
+                        element={authOnly && !isAuthed
+                            ? <Navigate to="/login" replace/>
+                            : element
+                        }
                     />
                 ))}
             </Routes>
