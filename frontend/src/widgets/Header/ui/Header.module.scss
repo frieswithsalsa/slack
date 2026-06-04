@@ -6,7 +6,7 @@
   background: #FFFFFF;
   box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
   font-size: var(--font-size-l);
-  
+
 }
 
 .links {
@@ -14,9 +14,11 @@
 }
 
 .mainLink {
+  display: flex;
   margin-left: 90px;
   text-decoration: none;
 }
+
 
 .mainLink:visited {
   color: black;
