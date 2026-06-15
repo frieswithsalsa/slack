@@ -15,9 +15,12 @@ const AppRouter = () => {
                     <Route
                         key={path}
                         path={path}
-                        element={authOnly && !isAuthed
-                            ? <Navigate to="/login" replace/>
-                            : element
+                        element={
+                            path === '/login' && isAuthed
+                                ? <Navigate to="/" replace/>
+                                : authOnly && !isAuthed
+                                    ? <Navigate to="/login" replace/>
+                                    : element
                         }
                     />
                 ))}

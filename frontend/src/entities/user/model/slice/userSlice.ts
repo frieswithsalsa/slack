@@ -3,7 +3,7 @@ import {UserState} from '../types/types'
 
 const initialState: UserState = {
     name: '',
-    isAuthed: false,
+    isAuthed: Boolean(localStorage.getItem('authToken')),
 }
 
 const userSlice = createSlice({
