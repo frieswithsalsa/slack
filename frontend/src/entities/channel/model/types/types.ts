@@ -1,5 +1,5 @@
-export interface ChannelType {
+export interface ChannelState {
     id: string;
     name: string;
-    removable: boolean;
+    isRemovable: boolean;
 }
