@@ -1,0 +1,11 @@
+.ChatWorkspace {
+  width: min(95vw, 1400px);
+  height: min(88vh, 860px);
+  display: grid;
+  grid-template-columns: 230px 1fr;
+
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
+}

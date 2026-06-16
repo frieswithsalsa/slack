@@ -1,0 +1,48 @@
+.ChannelsPanel {
+  background-color: #F8F9FA;
+  height: 100%;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+.AddChannel {
+  width: 23px;
+  height: 23px;
+  margin-left: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #4d8bff;
+  border-radius: 4px;
+  background: transparent;
+  color: #4d8bff;
+
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.AddChannel:hover {
+  background: rgba(77, 139, 255, 0.08);
+}
+
+.ChannelsPanelHeader {
+  display: flex;
+  padding: 24px 8px 24px 24px;
+  align-items: center;
+}
+
+.channelsList {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 8px 24px 24px;
+  list-style: none;
+  gap: 10px;
+}
+
+.channelItem {
+  width: 100%;
+}
