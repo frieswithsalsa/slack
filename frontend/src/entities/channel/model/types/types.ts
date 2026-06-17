@@ -1,5 +1,12 @@
-export interface ChannelState {
+export interface Channel {
     id: string;
     name: string;
-    isRemovable: boolean;
+    removable: boolean;
+}
+
+export interface ChannelState {
+    items: Channel[];
+    activeChannelId: string | null;
+    isLoading: boolean;
+    error: string | null;
 }

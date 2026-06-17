@@ -1,9 +1,11 @@
 import {ChannelState} from "@/entities/channel/model/types/types";
 
+
 interface ChannelRootState {
     channel: ChannelState;
 }
 
-export const selectChannelId = (state: ChannelRootState) => state.channel.id;
-export const selectChannelName = (state: ChannelRootState) => state.channel.name;
-export const selectChannelIsRemovable = (state: ChannelRootState) => state.channel.isRemovable;
+export const selectChannels = (state: ChannelRootState) => state.channel.items;
+export const selectActiveChannelId = (state: ChannelRootState) => state.channel.activeChannelId;
+export const selectChannelsIsLoading = (state: ChannelRootState) => state.channel.isLoading;
+export const selectChannelsError = (state: ChannelRootState) => state.channel.error;
