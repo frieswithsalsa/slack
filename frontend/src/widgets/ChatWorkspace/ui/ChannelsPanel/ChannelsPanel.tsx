@@ -1,9 +1,9 @@
 import {classNames} from "@/shared/lib/classNames";
 import cls from './ChannelsPanel.module.scss'
-import {ChannelButton} from "@/entities/channel";
 import {Plus} from 'lucide-react';
-import {useSelector} from "react-redux";
-import {selectChannels} from "@/entities/channel/model/selectors/selectors";
+import {useDispatch, useSelector} from "react-redux";
+import {ChannelButton, selectChannels, setActiveChannelId} from "@/entities/channel";
+import {AppDispatch} from "@/app/store";
 
 interface ChannelsPanelProps {
     className?: string;
@@ -13,6 +13,7 @@ interface ChannelsPanelProps {
 export const ChannelsPanel = ({className}: ChannelsPanelProps) => {
 
     const channels = useSelector(selectChannels)
+    const dispatch = useDispatch<AppDispatch>();
 
     return (
         <div className={classNames(cls.ChannelsPanel, {}, [className])}>
@@ -25,7 +26,10 @@ export const ChannelsPanel = ({className}: ChannelsPanelProps) => {
             <ul className={cls.channelsList}>
                 {channels.map((channel) => (
                     <li className={cls.channelItem} key={channel.id}>
-                        <ChannelButton type='button'># {channel.name}</ChannelButton>
+                        <ChannelButton
+                            onClick={() => dispatch(setActiveChannelId(channel.id))}
+                            type='button'># {channel.name}
+                        </ChannelButton>
                     </li>
                 ))}
             </ul>

@@ -5,12 +5,17 @@ interface ChannelButtonProps {
     className?: string;
     children?: React.ReactNode;
     type: "button";
+    onClick?: () => void;
 }
 
-export const ChannelButton = ({className, children}: ChannelButtonProps) => {
+export const ChannelButton = ({className, children, type, onClick}: ChannelButtonProps) => {
 
     return (
-        <button className={classNames(cls.ChannelButton, {}, [className])}>
+        <button
+            type={type}
+            onClick={onClick}
+            className={classNames(cls.ChannelButton, {}, [className])}
+        >
             {children}
         </button>
     );

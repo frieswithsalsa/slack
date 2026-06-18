@@ -1,0 +1,53 @@
+.ChatPanel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+}
+
+.messageArea {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.messageForm {
+  display: flex;
+  padding: 20px;
+}
+
+.messageInput {
+  min-width: 0;
+  padding: 5px 10px;
+  flex-grow: 1;
+  border: none;
+}
+
+.messageInput:focus {
+  outline: none;
+}
+
+.inputWrapper {
+  overflow: hidden;
+  height: 50px;
+  display: flex;
+  flex-grow: 1;
+  border: 1px solid #ddd;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 5px;
+  padding-right: 10px;
+}
+
+.inputWrapper:focus-within {
+  border-color: #4d8bff;
+  box-shadow: 0 0 8px rgba(77, 139, 255, 0.4);
+}
+
+.sendButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  color: #6E7174;
+}
+

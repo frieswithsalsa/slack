@@ -1,0 +1,20 @@
+.ChatHeader {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  background-color: #F8F9FA;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.headerRow {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 1rem;
+}
+
+.channelName {
+  font-size: var(--font-size-m);
+  font-weight: bold;
+}
