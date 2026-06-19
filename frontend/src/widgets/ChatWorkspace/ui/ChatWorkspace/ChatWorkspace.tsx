@@ -6,6 +6,7 @@ import {AppDispatch} from "@/app/store";
 import {useEffect} from "react";
 import {fetchChannels} from "@/entities/channel/model/services/fetchChannels";
 import {ChatPanel} from "@/widgets/ChatWorkspace/ui/ChatPanel/ChatPanel";
+import {fetchMessages} from "@/entities/message/model/services/fetchMessages";
 
 interface ChatWorkspaceProps {
     className?: string;
@@ -18,6 +19,10 @@ export const ChatWorkspace = ({className}: ChatWorkspaceProps) => {
 
     useEffect(() => {
         fetchChannels(dispatch)
+    }, [dispatch]);
+
+    useEffect(() => {
+        fetchMessages(dispatch)
     }, [dispatch]);
 
     return (
