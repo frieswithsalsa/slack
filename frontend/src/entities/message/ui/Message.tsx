@@ -11,7 +11,8 @@ export const Message = ({className, body, username}: MessageProps) => {
 
     return (
         <div className={classNames(cls.Message, {}, [className])}>
-            {username}: {body}
+            <span className={cls.username}>{username}: </span>
+            <span className={cls.body}>{body}</span>
         </div>
     );
 };

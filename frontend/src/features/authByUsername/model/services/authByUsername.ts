@@ -9,6 +9,7 @@ export const authByUsername = async (data: LoginFormData, dispatch: AppDispatch)
     try {
         const response = await axios.post('/api/v1/login', data,);
         localStorage.setItem("authToken", response.data.token);
+        localStorage.setItem("username", response.data.username);
         dispatch(setUser(response.data.username));
         console.log(response.data);
         return response.data;

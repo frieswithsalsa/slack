@@ -2,7 +2,7 @@ import {createSlice, type PayloadAction} from '@reduxjs/toolkit'
 import {UserState} from '../types/types'
 
 const initialState: UserState = {
-    name: '',
+    name: localStorage.getItem('username') ?? '',
     isAuthed: Boolean(localStorage.getItem('authToken')),
 }
 
@@ -17,6 +17,8 @@ const userSlice = createSlice({
         logout: (state) => {
             state.name = '';
             state.isAuthed = false;
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('username');
         },
     }
 })

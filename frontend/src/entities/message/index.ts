@@ -1,7 +1,3 @@
-import {selectActiveChannelMessages} from "@/entities/message/model/selectors/selectors";
-import {Message} from "@/entities/message/ui/Message";
-
-export {
-    selectActiveChannelMessages,
-    Message,
-}
+export {Message} from "./ui/Message";
+export {selectActiveChannelMessages} from "./model/selectors/selectors";
+export type {Message as MessageType} from "./model/types/types";

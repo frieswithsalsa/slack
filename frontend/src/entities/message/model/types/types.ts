@@ -5,6 +5,7 @@ export interface Message {
     username: string;
 }
 
+
 export interface MessageState {
     items: Message[];
     isLoading: boolean;
