@@ -2,12 +2,10 @@ import {classNames} from "@/shared/lib/classNames";
 import cls from './SendMessageForm.module.scss'
 import {SendHorizontal} from "lucide-react";
 import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {selectActiveChannelId} from "@/entities/channel";
 import {selectUserName} from "@/entities/user";
 import {sendMessage} from "@/features/sendMessage/model/services/sendMessage";
-import {addMessage} from "@/entities/message";
-import {AppDispatch} from "@/app/store";
 
 interface SendMessageFormProps {
     className?: string;
@@ -16,12 +14,11 @@ interface SendMessageFormProps {
 export const SendMessageForm = ({className}: SendMessageFormProps) => {
 
     const [message, setMessage] = useState('');
-    const [error, setError] = useState<string | null>(null);
+    const [setError] = useState<string | null>(null);
 
     const activeChannelId = useSelector(selectActiveChannelId);
     const username = useSelector(selectUserName);
 
-    const dispatch = useDispatch<AppDispatch>();
 
     function onChange(event: React.ChangeEvent<HTMLInputElement>) {
         setMessage(event.target.value);
@@ -51,8 +48,7 @@ export const SendMessageForm = ({className}: SendMessageFormProps) => {
 
 
         try {
-            const createdMessage = await sendMessage(newMessage);
-            dispatch(addMessage(createdMessage));
+            await sendMessage(newMessage);
             setMessage('');
             setError(null);
         } catch (error) {
