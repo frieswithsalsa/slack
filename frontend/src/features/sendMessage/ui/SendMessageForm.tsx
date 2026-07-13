@@ -14,7 +14,8 @@ interface SendMessageFormProps {
 export const SendMessageForm = ({className}: SendMessageFormProps) => {
 
     const [message, setMessage] = useState('');
-    const [setError] = useState<string | null>(null);
+    const [error, setError] = useState<string | null>(null);
+    const [isSending, setIsSending] = useState<boolean>(false);
 
     const activeChannelId = useSelector(selectActiveChannelId);
     const username = useSelector(selectUserName);
@@ -46,13 +47,17 @@ export const SendMessageForm = ({className}: SendMessageFormProps) => {
             username
         }
 
+        setIsSending(true);
+
 
         try {
             await sendMessage(newMessage);
             setMessage('');
             setError(null);
-        } catch (error) {
+        } catch (e) {
             setError('Не удалось отправить сообщение')
+        } finally {
+            setIsSending(false);
         }
 
     }
@@ -68,10 +73,15 @@ export const SendMessageForm = ({className}: SendMessageFormProps) => {
                        className={cls.messageInput}
                        onChange={onChange}
                        value={message}/>
-                <button aria-label="Отправить сообщение" className={cls.sendButton} type="submit">
+                <button
+                    disabled={isSending}
+                    aria-label="Отправить сообщение"
+                    className={cls.sendButton}
+                    type="submit">
                     <SendHorizontal size={30} strokeWidth={0.75}/>
                 </button>
             </div>
+            {error && <p className={cls.errorText}>{error}</p>}
         </form>
     );
 };
