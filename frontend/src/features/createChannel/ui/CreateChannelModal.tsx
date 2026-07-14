@@ -1,15 +1,21 @@
-import {classNames} from "@/shared/lib/classNames";
-import cls from './CreateChannelModal.module.scss'
+import {Modal} from '@/shared/ui/Modal';
+import cls from './CreateChannelModal.module.scss';
 
 interface CreateChannelModalProps {
-    className?: string;
+    isOpen: boolean;
+    onClose: () => void;
 }
 
-export const CreateChannelModal = ({className}: CreateChannelModalProps) => {
-
+export const CreateChannelModal = ({isOpen, onClose}: CreateChannelModalProps) => {
     return (
-        <div className={classNames(cls.CreateChannelModal, {}, [className])}>
-
-        </div>
+        <Modal title="Создать канал" isOpen={isOpen} onClose={onClose}>
+            <form>
+                <input className={cls.input}/>
+                <div className={cls.actions}>
+                    <button type="button" onClick={onClose} className={cls.cancelButton}>Отменить</button>
+                    <button type="submit" className={cls.submitButton}>Создать</button>
+                </div>
+            </form>
+        </Modal>
     );
 };
