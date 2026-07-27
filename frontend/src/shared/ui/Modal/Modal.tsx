@@ -18,7 +18,9 @@ export const Modal = ({className, title, isOpen, onClose, children}: ModalProps)
 
     return (
         <div className={cls.overlay} onClick={onClose}>
-            <div className={classNames(cls.window, {}, [className])}>
+            <div
+                className={classNames(cls.window, {}, [className])}
+                onClick={(e) => e.stopPropagation()}>
                 <div className={cls.header}>
                     <h2 className={cls.title}>{title}</h2>
                     <button type="button" onClick={onClose} className={cls.closeButton} aria-label="Закрыть">
