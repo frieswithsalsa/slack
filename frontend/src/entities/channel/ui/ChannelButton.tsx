@@ -6,15 +6,16 @@ interface ChannelButtonProps {
     children?: React.ReactNode;
     type: "button";
     onClick?: () => void;
+    isActive?: boolean;
 }
 
-export const ChannelButton = ({className, children, type, onClick}: ChannelButtonProps) => {
+export const ChannelButton = ({className, children, type, onClick, isActive}: ChannelButtonProps) => {
 
     return (
         <button
             type={type}
             onClick={onClick}
-            className={classNames(cls.ChannelButton, {}, [className])}
+            className={classNames(cls.ChannelButton, {[cls.active]: isActive}, [className])}
         >
             {children}
         </button>

@@ -3,7 +3,7 @@ import {useState} from "react";
 import {classNames} from "@/shared/lib/classNames";
 import {Plus} from 'lucide-react';
 import {useDispatch, useSelector} from "react-redux";
-import {ChannelButton, selectChannels, setActiveChannelId} from "@/entities/channel";
+import {ChannelButton, selectActiveChannelId, selectChannels, setActiveChannelId} from "@/entities/channel";
 import {AppDispatch} from "@/app/store";
 import {CreateChannelModal} from '@/features/createChannel'
 
@@ -18,6 +18,8 @@ export const ChannelsPanel = ({className}: ChannelsPanelProps) => {
     const dispatch = useDispatch<AppDispatch>();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const activeChannelId = useSelector(selectActiveChannelId);
 
     return (
         <div className={classNames(cls.ChannelsPanel, {}, [className])}>
@@ -38,6 +40,7 @@ export const ChannelsPanel = ({className}: ChannelsPanelProps) => {
                     <li className={cls.channelItem} key={channel.id}>
                         <ChannelButton
                             onClick={() => dispatch(setActiveChannelId(channel.id))}
+                            isActive={channel.id === activeChannelId}
                             type='button'># {channel.name}
                         </ChannelButton>
                     </li>
