@@ -2,10 +2,11 @@ import {classNames} from "@/shared/lib/classNames";
 import cls from './SendMessageForm.module.scss'
 import {SendHorizontal} from "lucide-react";
 import {useState} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {selectActiveChannelId} from "@/entities/channel";
 import {selectUserName} from "@/entities/user";
 import {sendMessage} from "@/features/sendMessage/model/services/sendMessage";
+import {AppDispatch} from "@/app/store";
 
 interface SendMessageFormProps {
     className?: string;
@@ -16,6 +17,7 @@ export const SendMessageForm = ({className}: SendMessageFormProps) => {
     const [message, setMessage] = useState('');
     const [error, setError] = useState<string | null>(null);
     const [isSending, setIsSending] = useState<boolean>(false);
+    const dispatch = useDispatch<AppDispatch>()
 
     const activeChannelId = useSelector(selectActiveChannelId);
     const username = useSelector(selectUserName);
@@ -51,7 +53,7 @@ export const SendMessageForm = ({className}: SendMessageFormProps) => {
 
 
         try {
-            await sendMessage(newMessage);
+            await dispatch(sendMessage(newMessage)).unwrap()
             setMessage('');
             setError(null);
         } catch (e) {

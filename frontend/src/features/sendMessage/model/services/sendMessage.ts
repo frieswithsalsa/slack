@@ -1,29 +1,31 @@
 import type {SendMessageData} from "../types";
 import type {MessageType} from "@/entities/message";
 import axios from "axios";
+import {createAsyncThunk} from "@reduxjs/toolkit";
+import {Message} from "@/entities/message/model/types/types";
 
-export const sendMessage = async (message: SendMessageData) => {
-    const token = localStorage.getItem("authToken");
+export const sendMessage = createAsyncThunk<
+    Message,
+    SendMessageData,
+    { rejectValue: string }
+>(
+    'message/send',
+    async (message, thunkAPI) => {
+        try {
+            const token = localStorage.getItem('authToken')
 
-    if (!token) {
-        throw new Error("Unable to retrieve token");
-    }
-
-    try {
-        const response = await axios.post<MessageType>('/api/v1/messages', message, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            }
-        })
-
-
-        return response.data;
-    } catch (e) {
-        if (axios.isAxiosError(e) && e.response?.status === 401) {
-            console.log("Unauthorized.")
-            throw new Error("Unauthorized.");
+            const response = await axios.post<MessageType>(
+                '/api/v1/messages',
+                message,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    }
+                }
+            );
+            return response.data
+        } catch {
+            return thunkAPI.rejectWithValue('Не удалось отправить сообщение');
         }
-        throw new Error("Something went wrong.")
     }
-
-}
+)
