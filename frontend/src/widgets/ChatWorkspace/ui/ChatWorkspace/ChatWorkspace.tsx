@@ -48,13 +48,12 @@ export const ChatWorkspace = ({className}: ChatWorkspaceProps) => {
         }
     }, [dispatch]);
 
-
     useEffect(() => {
-        fetchChannels(dispatch)
+        dispatch(fetchChannels());
     }, [dispatch]);
 
     useEffect(() => {
-        fetchMessages(dispatch)
+        dispatch(fetchMessages());
     }, [dispatch]);
 
 

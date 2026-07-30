@@ -1,6 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {Channel, ChannelState} from "@/entities/channel/model/types/types";
 import {createChannel} from "@/features/createChannel/model/services/createChannel";
+import {fetchChannels} from "@/entities/channel/model/services/fetchChannels";
 
 const initialState: ChannelState = {
     items: [],
@@ -13,11 +14,6 @@ const channelSlice = createSlice({
     name: 'channel',
     initialState,
     reducers: {
-        setChannels: (state, action: PayloadAction<Channel[]>) => {
-            state.items = action.payload;
-            state.activeChannelId = action.payload[0]?.id ?? null;
-        },
-
         setActiveChannelId: (state, action: PayloadAction<string | null>) => {
             state.activeChannelId = action.payload;
         },
@@ -40,10 +36,23 @@ const channelSlice = createSlice({
                 state.isLoading = false;
                 state.error = action.payload ?? 'Не удалось создать канал';
             })
+            .addCase(fetchChannels.pending, (state) => {
+                state.isLoading = true
+                state.error = null
+            })
+            .addCase(fetchChannels.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.items = action.payload;
+                state.activeChannelId = action.payload[0]?.id ?? null;
+            })
+            .addCase(fetchChannels.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload ?? 'Не удалось запросить список каналов';
+            })
     }
 });
 
 
-export const {setChannels, setActiveChannelId, addChannel} = channelSlice.actions;
+export const {setActiveChannelId, addChannel} = channelSlice.actions;
 
 export default channelSlice.reducer;
