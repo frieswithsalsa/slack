@@ -16,7 +16,7 @@ interface LoginFormProps {
 }
 
 export const LoginForm = ({className}: LoginFormProps) => {
-    const [authError, setAuthError] = useState<Error | null>(null);
+    const [authError, setAuthError] = useState<string | null>(null);
     const navigate = useNavigate();
 
     const {
@@ -31,11 +31,11 @@ export const LoginForm = ({className}: LoginFormProps) => {
 
     const onSubmit: SubmitHandler<LoginFormData> = async (data,) => {
         try {
-            await authByUsername(data, dispatch);
+            await dispatch(authByUsername(data)).unwrap();
             navigate('/')
         } catch (e) {
-            if (e instanceof Error) {
-                setAuthError(e.message);
+            if (e) {
+                setAuthError(typeof e === 'string' ? e : 'Неверные имя пользователя или пароль');
             }
         }
     }

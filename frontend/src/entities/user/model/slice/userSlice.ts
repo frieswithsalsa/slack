@@ -1,5 +1,6 @@
 import {createSlice, type PayloadAction} from '@reduxjs/toolkit'
 import {UserState} from '../types/types'
+import {authByUsername} from "@/features/authByUsername/model/services/authByUsername";
 
 const initialState: UserState = {
     name: localStorage.getItem('username') ?? '',
@@ -20,6 +21,20 @@ const userSlice = createSlice({
             localStorage.removeItem('authToken');
             localStorage.removeItem('username');
         },
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(authByUsername.pending, (state) => {
+                state.isAuthed = false
+            })
+            .addCase(authByUsername.fulfilled, (state, action) => {
+                state.isAuthed = true;
+                state.name = action.payload.username;
+
+            })
+            .addCase(authByUsername.rejected, (state, action) => {
+                state.isAuthed = false;
+            })
     }
 })
 
