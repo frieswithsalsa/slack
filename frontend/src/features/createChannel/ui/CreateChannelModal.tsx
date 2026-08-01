@@ -22,7 +22,6 @@ export const CreateChannelModal = ({isOpen, onClose}: CreateChannelModalProps) =
         resolver: yupResolver(createChannelSchema(existingNames)),
     });
 
-
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
