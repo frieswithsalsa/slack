@@ -6,6 +6,10 @@
   border-radius: 6px;
 }
 
+.item:not(.active):hover {
+  background-color: rgba(108, 117, 125, 0.15);
+}
+
 .active {
   background-color: #6C757D;
   color: #fff;
@@ -18,10 +22,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   border-radius: 6px 0 0 6px;
-}
-
-.name:hover {
-  background-color: rgba(108, 117, 125, 0.15);
 }
 
 .active .name:hover {
@@ -39,10 +39,6 @@
   background: transparent;
   color: inherit;
   cursor: pointer;
-}
-
-.menuToggle:hover {
-  background-color: rgba(108, 117, 125, 0.15);
 }
 
 .active .menuToggle:hover {
