@@ -3,9 +3,11 @@ import {useState} from "react";
 import {classNames} from "@/shared/lib/classNames";
 import {Plus} from 'lucide-react';
 import {useDispatch, useSelector} from "react-redux";
-import {ChannelButton, selectActiveChannelId, selectChannels, setActiveChannelId} from "@/entities/channel";
+import {selectActiveChannelId, selectChannels, setActiveChannelId} from "@/entities/channel";
 import {AppDispatch} from "@/app/store";
 import {CreateChannelModal} from '@/features/createChannel'
+import {ChannelItem} from "@/widgets/ChatWorkspace/ui/ChannelsPanel/ChannelItem/ChannelItem";
+
 
 interface ChannelsPanelProps {
     className?: string;
@@ -38,11 +40,15 @@ export const ChannelsPanel = ({className}: ChannelsPanelProps) => {
             <ul className={cls.channelsList}>
                 {channels.map((channel) => (
                     <li className={cls.channelItem} key={channel.id}>
-                        <ChannelButton
-                            onClick={() => dispatch(setActiveChannelId(channel.id))}
-                            isActive={channel.id === activeChannelId}
-                            type='button'># {channel.name}
-                        </ChannelButton>
+                        <ChannelItem
+                            channel={channel}
+                            isActive={activeChannelId === channel.id}
+                            onSelect={() => dispatch(setActiveChannelId(channel.id))}
+                            onRename={() => {
+                            }}
+                            onRemove={() => {
+                            }}
+                        />
                     </li>
                 ))}
             </ul>
