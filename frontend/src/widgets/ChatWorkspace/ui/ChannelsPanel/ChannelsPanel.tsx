@@ -8,12 +8,12 @@ import {AppDispatch} from "@/app/store";
 import {CreateChannelModal} from '@/features/createChannel'
 import {ChannelItem} from "@/widgets/ChatWorkspace/ui/ChannelsPanel/ChannelItem/ChannelItem";
 import {RemoveChannelModal} from '@/features/removeChannel'
+import {RenameChannelModal} from '@/features/renameChannel';
 
 
 interface ChannelsPanelProps {
     className?: string;
 }
-
 
 export const ChannelsPanel = ({className}: ChannelsPanelProps) => {
 
@@ -48,6 +48,7 @@ export const ChannelsPanel = ({className}: ChannelsPanelProps) => {
                             isActive={activeChannelId === channel.id}
                             onSelect={() => dispatch(setActiveChannelId(channel.id))}
                             onRename={() => {
+                                setDialog({type: 'rename', channelId: channel.id});
                             }}
                             onRemove={() => setDialog({type: 'remove', channelId: channel.id})}
                         />
@@ -65,6 +66,8 @@ export const ChannelsPanel = ({className}: ChannelsPanelProps) => {
                     onClose={() => setDialog(null)}
                 />
             )}
+            {dialog?.type === 'rename' &&
+                <RenameChannelModal channelId={dialog.channelId} isOpen onClose={() => setDialog(null)}/>}
         </div>
     );
 };
