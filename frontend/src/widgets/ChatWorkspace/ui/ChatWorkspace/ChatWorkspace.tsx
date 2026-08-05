@@ -9,8 +9,7 @@ import {ChatPanel} from "@/widgets/ChatWorkspace/ui/ChatPanel/ChatPanel";
 import {fetchMessages} from "@/entities/message/model/services/fetchMessages";
 import {socket} from '@/shared/api/socket';
 import {addMessage, MessageType} from "@/entities/message";
-import {Channel} from "@/entities/channel/model/types/types";
-import {addChannel} from "@/entities/channel/model/slice/channelSlice";
+import {addChannel, channelRemoved, channelRenamed, Channel} from "@/entities/channel";
 
 
 interface ChatWorkspaceProps {
@@ -45,6 +44,28 @@ export const ChatWorkspace = ({className}: ChatWorkspaceProps) => {
 
         return () => {
             socket.off('newChannel', handleNewChannel);
+        }
+    }, [dispatch]);
+
+    useEffect(() => {
+        const handleRemoveChannel = (payload: Channel) => {
+            dispatch(channelRemoved(payload.id))
+        }
+        socket.on('removeChannel', handleRemoveChannel);
+
+        return () => {
+            socket.off('removeChannel', handleRemoveChannel);
+        }
+    }, [dispatch]);
+
+    useEffect(() => {
+        const handleRenameChannel = (payload: Channel) => {
+            dispatch(channelRenamed(payload))
+        }
+        socket.on('renameChannel', handleRenameChannel);
+
+        return () => {
+            socket.off('renameChannel', handleRenameChannel);
         }
     }, [dispatch]);
 

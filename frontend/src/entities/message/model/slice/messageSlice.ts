@@ -1,6 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {Message, MessageState} from "@/entities/message/model/types/types";
 import {fetchMessages} from "@/entities/message/model/services/fetchMessages";
+import {channelRemoved} from "@/entities/channel";
 
 const initialState: MessageState = {
     items: [],
@@ -33,8 +34,10 @@ const messageSlice = createSlice({
                 state.isLoading = false;
                 state.error = action.payload ?? 'Не удалось запросить список сообщений';
             })
+            .addCase(channelRemoved, (state, action) => {
+                state.items = state.items.filter(item => item.channelId !== action.payload)
+            })
     }
-
 });
 
 

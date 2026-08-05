@@ -1,5 +1,10 @@
 import {ChannelButton} from "@/entities/channel/ui/ChannelButton";
-import {setActiveChannelId} from "@/entities/channel/model/slice/channelSlice";
+import {
+    setActiveChannelId,
+    channelRemoved,
+    addChannel,
+    channelRenamed
+} from "@/entities/channel/model/slice/channelSlice";
 import {selectChannels, selectActiveChannel, selectActiveChannelId} from "@/entities/channel/model/selectors/selectors";
 import type {Channel} from "@/entities/channel/model/types/types";
 
@@ -9,5 +14,8 @@ export {
     selectChannels,
     selectActiveChannel,
     selectActiveChannelId,
-    Channel
+    Channel,
+    channelRemoved,
+    addChannel,
+    channelRenamed
 };
