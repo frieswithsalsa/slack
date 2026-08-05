@@ -1,0 +1,53 @@
+.message {
+  margin: 0;
+  font-size: 16px;
+  color: #212529;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 24px;
+  padding-bottom: 20px;
+}
+
+.cancelButton {
+  border: none;
+  border-radius: 5px;
+  background-color: #6c757d;
+  padding: 10px 16px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.cancelButton:hover {
+  background-color: #5c636a;
+}
+
+.removeButton {
+  border: none;
+  border-radius: 5px;
+  background-color: #dc3545;
+  padding: 10px 16px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.removeButton:hover {
+  background-color: #bb2d3b;
+}
+
+.cancelButton:disabled,
+.removeButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.errorText {
+  margin: 12px 0 0;
+  color: #dc3545;
+  font-size: 14px;
+}
