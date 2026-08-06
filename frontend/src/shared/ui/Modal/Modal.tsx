@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import {ReactNode, useEffect} from 'react';
 import {X} from 'lucide-react';
 import {classNames} from '@/shared/lib/classNames';
 import cls from './Modal.module.scss';
@@ -12,6 +12,17 @@ interface ModalProps {
 }
 
 export const Modal = ({className, title, isOpen, onClose, children}: ModalProps) => {
+    useEffect(() => {
+        function handleEscapeKey(event: KeyboardEvent) {
+            if (event.code === 'Escape') {
+                onClose()
+            }
+        }
+
+        document.addEventListener('keydown', handleEscapeKey)
+        return () => document.removeEventListener('keydown', handleEscapeKey)
+    }, [isOpen, onClose])
+
     if (!isOpen) {
         return null;
     }
