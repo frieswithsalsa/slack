@@ -8,6 +8,7 @@ import {createChannelSchema} from '../model/validation';
 import cls from './CreateChannelModal.module.scss';
 import {createChannel} from "@/features/createChannel/model/services/createChannel";
 import {AppDispatch} from "@/app/store";
+import {Button} from "@/shared/ui/Button";
 
 interface CreateChannelModalProps {
     isOpen: boolean;
@@ -50,10 +51,10 @@ export const CreateChannelModal = ({isOpen, onClose}: CreateChannelModalProps) =
                 />
                 {errors.name && <p className={cls.errorText}>{errors.name.message}</p>}
                 <div className={cls.actions}>
-                    <button type="button" onClick={onClose} className={cls.cancelButton}
+                    <Button type="button" onClick={onClose} className={cls.cancelButton}
                             disabled={isSubmitting}>Отменить
-                    </button>
-                    <button type="submit" className={cls.submitButton} disabled={isSubmitting}>Создать</button>
+                    </Button>
+                    <Button type="submit" className={cls.submitButton} disabled={isSubmitting}>Создать</Button>
                 </div>
             </form>
         </Modal>

@@ -1,10 +1,10 @@
-import {classNames} from "@/shared/lib/classNames";
 import cls from './RemoveChannelModal.module.scss';
 import {useDispatch} from "react-redux";
 import {AppDispatch} from "@/app/store";
 import {useState} from "react";
 import {removeChannel} from "@/features/removeChannel/model/services/removeChannel";
 import {Modal} from "@/shared/ui/Modal";
+import {Button} from "@/shared/ui/Button";
 
 interface RemoveChannelModalProps {
     className?: string;
@@ -30,27 +30,26 @@ export const RemoveChannelModal = ({className, channelId, onClose, isOpen}: Remo
             setIsPending(false);
         }
     }
-
-
+    
     return (
         <Modal title="Удалить канал" isOpen={isOpen} onClose={onClose}>
             <p className={cls.message}>Уверены?</p>
             <div className={cls.actions}>
-                <button type="button"
+                <Button type="button"
                         onClick={onClose}
                         className={cls.cancelButton}
                         disabled={isPending}
                 >
                     Отменить
-                </button>
-                <button
+                </Button>
+                <Button
                     type="button"
                     onClick={onConfirm}
                     disabled={isPending}
                     className={cls.removeButton}
                 >
                     Удалить
-                </button>
+                </Button>
             </div>
             {error && <p className={cls.errorText}>{error}</p>}
         </Modal>

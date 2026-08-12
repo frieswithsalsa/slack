@@ -8,6 +8,7 @@ import {createChannelSchema} from "@/features/createChannel/model/validation";
 import cls from './RenameChannelModal.module.scss';
 import {renameChannel} from "@/features/renameChannel/model/services/renameChannel";
 import {AppDispatch} from "@/app/store";
+import {Button} from "@/shared/ui/Button";
 
 interface RenameChannelModalProps {
     channelId: string;
@@ -54,10 +55,10 @@ export const RenameChannelModal = ({isOpen, onClose, channelId}: RenameChannelMo
                 />
                 {errors.name && <p className={cls.errorText}>{errors.name.message}</p>}
                 <div className={cls.actions}>
-                    <button type="button" onClick={onClose} className={cls.cancelButton}
+                    <Button type="button" onClick={onClose} className={cls.cancelButton}
                             disabled={isSubmitting}>Отменить
-                    </button>
-                    <button type="submit" className={cls.submitButton} disabled={isSubmitting}>Переименовать</button>
+                    </Button>
+                    <Button type="submit" className={cls.submitButton} disabled={isSubmitting}>Переименовать</Button>
                 </div>
             </form>
         </Modal>
