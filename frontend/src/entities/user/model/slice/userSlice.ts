@@ -1,6 +1,7 @@
 import {createSlice, type PayloadAction} from '@reduxjs/toolkit'
 import {UserState} from '../types/types'
-import {authByUsername} from "@/features/authByUsername/model/services/authByUsername";
+import {authByUsername} from "@/features/authByUsername";
+import {createAccount} from "@/features/createAccount";
 
 const initialState: UserState = {
     name: localStorage.getItem('username') ?? '',
@@ -34,6 +35,10 @@ const userSlice = createSlice({
             })
             .addCase(authByUsername.rejected, (state, action) => {
                 state.isAuthed = false;
+            })
+            .addCase(createAccount.fulfilled, (state, action) => {
+                state.isAuthed = true;
+                state.name = action.payload.username;
             })
     }
 })
