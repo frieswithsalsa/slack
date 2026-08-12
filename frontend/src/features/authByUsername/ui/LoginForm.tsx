@@ -50,6 +50,7 @@ export const LoginForm = ({className}: LoginFormProps) => {
                     className={classNames(cls.formInput, {[cls.inputError]: !!errors.username}, [])}/>
                 {errors.username && <p className={cls.errorText}>{errors.username.message}</p>}
                 <input
+                    type={"password"}
                     placeholder='Your password'
                     {...register("password")}
                     className={classNames(cls.formInput, {[cls.inputError]: !!errors.password}, [])}
@@ -59,7 +60,7 @@ export const LoginForm = ({className}: LoginFormProps) => {
                 {authError && <p className={cls.errorText}>{authError}</p>}
                 <p className={cls.signupRow}>
                     Нет аккаунта?
-                    <a className={cls.signupLink} href="#">Регистрация</a>
+                    <a className={cls.signupLink} href="/signup">Регистрация</a>
                 </p>
             </form>
         </div>
