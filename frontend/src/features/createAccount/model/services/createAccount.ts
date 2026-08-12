@@ -20,7 +20,11 @@ export const createAccount = createAsyncThunk<
             localStorage.setItem("username", response.data.username);
 
             return response.data;
-        } catch {
+        } catch (e) {
+            if (axios.isAxiosError(e) && e.response?.status === 409) {
+                return thunkAPI.rejectWithValue("User already exists");
+
+            }
             return thunkAPI.rejectWithValue("Sign up failed.")
         }
     },
