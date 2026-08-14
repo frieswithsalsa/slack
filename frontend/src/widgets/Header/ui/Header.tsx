@@ -1,12 +1,17 @@
 // import {classNames} from "shared/lib/classNames";
 import cls from './Header.module.scss'
 import {AppLink} from "@/shared/ui/AppLink/AppLink";
+import {LogoutButton} from "@/features/logout";
+import {selectIsAuthed} from "@/entities/user";
+import {useSelector} from "react-redux";
 
 interface HeaderProps {
     className?: string;
 }
 
 export const Header = ({className}: HeaderProps) => {
+
+    const isAuthed = useSelector(selectIsAuthed)
 
     return (
         <div className={cls.Header}>
@@ -20,6 +25,8 @@ export const Header = ({className}: HeaderProps) => {
                     />
                 </AppLink>
             </div>
+            {isAuthed && <LogoutButton/>}
+
         </div>
     );
 };
