@@ -14,7 +14,7 @@ export const fetchChannels = createAsyncThunk<
             const token = localStorage.getItem('authToken')
 
             const response = await axios.get<Channel[]>(
-                '/api/v1/channels',
+                '/go-api/v1/channels',
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
