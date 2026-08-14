@@ -7,10 +7,9 @@ import {useDispatch} from "react-redux";
 
 interface LogoutButtonProps {
     className?: string;
-    children?: React.ReactNode;
 }
 
-export const LogoutButton = ({className, children}: LogoutButtonProps) => {
+export const LogoutButton = ({className, }: LogoutButtonProps) => {
     const dispatch = useDispatch();
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -18,8 +17,8 @@ export const LogoutButton = ({className, children}: LogoutButtonProps) => {
     }
 
     return (
-        <Button label={'Выйти'} onClick={handleClick} className={classNames(cls.LogoutButton, {}, [className])}>
-            {children}
+        <Button onClick={handleClick} className={classNames(cls.LogoutButton, {}, [className])}>
+            Выйти
         </Button>
     );
 };
