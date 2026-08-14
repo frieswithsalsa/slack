@@ -25,7 +25,7 @@ export const Header = ({className}: HeaderProps) => {
                     />
                 </AppLink>
             </div>
-            {isAuthed && <LogoutButton/>}
+            {isAuthed && <LogoutButton />}
 
         </div>
     );

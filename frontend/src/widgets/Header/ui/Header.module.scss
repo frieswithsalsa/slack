@@ -1,8 +1,10 @@
 .Header {
   display: flex;
   align-items: center;
+  box-sizing: border-box;
   width: 100%;
   height: var(--header-height);
+  padding: 0 clamp(1rem, 5vw, 90px);
   background: #FFFFFF;
   box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
   font-size: var(--font-size-l);
@@ -15,7 +17,6 @@
 
 .mainLink {
   display: flex;
-  margin-left: 90px;
   text-decoration: none;
 }
 
