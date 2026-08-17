@@ -1,54 +1,135 @@
+/* Материал «приезжает», а не просто проявляется: блюр, масштаб и прозрачность
+   меняются вместе — поверхность читается как физический объект. */
+@keyframes scrimIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(8px);
+  }
+}
+
+@keyframes windowIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
 .overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4); // Затемнение заднего фона
+  inset: 0;
+  z-index: 1000;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  padding: 16px;
+
+  /* Модалка блокирует поток — затемняем фон и отодвигаем его назад */
+  background-color: var(--scrim);
+  backdrop-filter: blur(8px);
+
+  animation: scrimIn var(--duration-base) var(--ease-out) both;
 }
 
 .window {
-  background-color: #ffffff;
-  border-radius: 12px;
-  width: 500px;
-  max-width: 90%;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-}
+  width: 500px;
+  max-width: 100%;
 
-.content {
-  padding: 0 15px;
+  background-color: var(--surface);
+  /* Крупная поверхность — крупный радиус и глубокая тень */
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-3);
+
+  animation: windowIn var(--duration-base) var(--ease-out) both;
 }
 
 .header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  margin: 15px;
+  gap: 12px;
+  padding: 20px 20px 16px;
 }
 
 .title {
   font: var(--font-l);
+  font-weight: var(--font-weight-semibold);
+  /* Крупный текст: плотный трекинг, иначе буквы «расползаются» */
+  letter-spacing: var(--font-track-l);
 }
 
 .closeButton {
-  cursor: pointer;
-  border: none;
-  color: #5B636B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+
+  width: var(--touch-target);
+  height: var(--touch-target);
+
+  color: var(--text-secondary);
   background: none;
+  border: none;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+
+  transition:
+    transform var(--duration-instant) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
 }
 
 .closeButton:hover {
-  color: #404040;
+  color: var(--text-primary);
+  background-color: var(--fill-hover);
+}
+
+.closeButton:active {
+  transform: scale(0.92);
+  background-color: var(--fill-active);
+}
+
+/* Иконка не должна перевешивать заголовок: закрытие — не главное действие */
+.closeButton svg {
+  width: 20px;
+  height: 20px;
 }
 
 .thinLine {
   border: none;
   height: 1px;
-  background-color: #ddd;
-  margin-bottom: 20px;
+  background-color: var(--separator);
+  margin: 0 0 20px;
+}
+
+.content {
+  padding: 0 20px;
+}
+
+/* Сокращённое движение: не «без анимации», а то же событие без перемещения —
+   короткое проявление вместо масштаба и сдвига. */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .window {
+    animation: fadeIn var(--duration-fast) linear both !important;
+  }
 }

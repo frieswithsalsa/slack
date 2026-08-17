@@ -1,25 +1,30 @@
+/* Один разделитель, а не бордер плюс тень: двойная граница читается как грязь */
 .ChatHeader {
-  height: 80px;
-  width: 100%;
+  flex: 0 0 auto;
   display: flex;
-  background-color: #F8F9FA;
-  border-bottom: 1px solid #ddd;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  min-height: 72px;
+
+  background-color: var(--surface);
+  box-shadow: inset 0 -1px 0 var(--separator);
 }
 
 .headerRow {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  padding: 1rem;
+  justify-content: center;
+  gap: 2px;
+  padding: 12px 20px;
 }
 
 .channelName {
   font-size: var(--font-size-m);
-  font-weight: bold;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-track-m);
 }
 
 .activeChannelMessages {
   font-size: var(--font-size-s);
-  color: #6C757D;
+  letter-spacing: var(--font-track-s);
+  color: var(--text-secondary);
 }

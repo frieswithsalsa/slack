@@ -59,7 +59,7 @@ export const ChannelItem = ({
                         onRename();
                     }}>Переименовать
                     </button>
-                    <button className={cls.menuItem} type="button" onClick={() => {
+                    <button className={classNames(cls.menuItem, {}, [cls.menuItemDanger])} type="button" onClick={() => {
                         setIsMenuOpen(false);
                         onRemove();
                     }}>Удалить

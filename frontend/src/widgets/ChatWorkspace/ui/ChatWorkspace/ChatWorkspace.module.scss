@@ -2,10 +2,23 @@
   width: min(95vw, 1400px);
   height: min(88vh, 860px);
   display: grid;
-  grid-template-columns: 230px 1fr;
+  grid-template-columns: 260px 1fr;
 
-  background: #fff;
-  border-radius: 6px;
+  background: var(--surface);
+  /* Крупная поверхность — крупный радиус и глубокая тень */
+  border-radius: var(--radius-l);
   overflow: hidden;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
+  box-shadow: var(--shadow-3);
+}
+
+/* На узком экране карточка занимает всё место, а боковая панель ужимается:
+   иначе список каналов съедает половину ширины чата */
+@media (max-width: 720px) {
+  .ChatWorkspace {
+    width: 100vw;
+    height: calc(100dvh - var(--header-height));
+    grid-template-columns: minmax(0, 40%) 1fr;
+    border-radius: 0;
+    box-shadow: none;
+  }
 }

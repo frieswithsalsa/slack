@@ -1,6 +1,7 @@
 .MainPage {
-  min-height: calc(100vh - var(--header-height));
   display: flex;
   justify-content: center;
   align-items: center;
+  /* dvh, а не vh: на мобильных панель браузера съедает часть экрана */
+  min-height: calc(100dvh - var(--header-height));
 }

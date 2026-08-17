@@ -80,7 +80,7 @@ export const SendMessageForm = ({className}: SendMessageFormProps) => {
                     aria-label="Отправить сообщение"
                     className={cls.sendButton}
                     type="submit">
-                    <SendHorizontal size={30} strokeWidth={0.75}/>
+                    <SendHorizontal size={20} strokeWidth={1.75}/>
                 </button>
             </div>
             {error && <p className={cls.errorText}>{error}</p>}

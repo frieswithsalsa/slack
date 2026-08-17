@@ -1,12 +1,19 @@
 .ChannelButton {
-  border: none;
-  background: transparent;
   display: flex;
-  align-items: flex-start;
-  cursor: pointer;
-  padding: 8px;
-  width: 100%;
+  align-items: center;
   justify-content: flex-start;
+
+  width: 100%;
+  min-height: var(--touch-target);
+  padding: 6px 10px;
+
+  font: var(--font-s);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-track-s);
   text-align: left;
   color: inherit;
+
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }

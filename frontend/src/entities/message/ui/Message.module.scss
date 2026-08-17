@@ -1,8 +1,16 @@
 .Message {
-  margin-top: 20px;
-  margin-left: 20px;
+  padding: 6px 20px;
+  font: var(--font-m);
+  letter-spacing: var(--font-track-m);
+  /* Длинные слова и ссылки не должны рвать колонку */
+  overflow-wrap: anywhere;
 }
 
+/* Иерархию задаёт вес, а не размер: имя не занимает больше места, но читается первым */
 .username {
-  font-weight: bold;
+  font-weight: var(--font-weight-semibold);
+}
+
+.body {
+  color: var(--text-primary);
 }

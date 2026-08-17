@@ -1,0 +1,35 @@
+/* База для всех кнопок: геометрия и отклик.
+   Цвет НЕ задаём — его приносит класс вызывающей стороны. */
+.Button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: var(--touch-target);
+  padding: 8px 16px;
+
+  font: var(--font-s);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-track-s);
+
+  border: none;
+  border-radius: var(--radius-s);
+  cursor: pointer;
+
+  /* transform отдельно и быстрее: нажатие должно читаться мгновенно */
+  transition:
+    transform var(--duration-instant) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out);
+}
+
+/* Отклик на нажатии, а не на отпускании */
+.Button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.Button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

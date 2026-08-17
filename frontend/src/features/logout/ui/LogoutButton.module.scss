@@ -1,12 +1,14 @@
+/* Геометрию и отклик приносит shared/ui/Button — здесь только цвет.
+   Выход — не главное действие на экране, поэтому не залитая, а тонированная кнопка. */
 .LogoutButton {
-  padding: 10px;
-  font-size: 16px;
-  font-weight: 200;
-  color: #ffffff;
-  background-color: #2f6bff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.15s ease;
+  color: var(--accent);
+  background-color: var(--accent-soft);
+}
 
+.LogoutButton:hover {
+  background-color: var(--accent-soft-hover);
+}
+
+.LogoutButton:active {
+  background-color: var(--accent-soft-active);
 }

@@ -1,46 +1,74 @@
+/* Боковая панель — структурная зона: чуть утопленный фон отделяет её от чата */
 .ChannelsPanel {
-  background-color: #F8F9FA;
-  height: 100%;
-  border-right: 1px solid #ddd;
   display: flex;
   flex-direction: column;
-}
+  height: 100%;
+  min-height: 0;
 
-.AddChannel {
-  width: 23px;
-  height: 23px;
-  margin-left: auto;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid #4d8bff;
-  border-radius: 4px;
-  background: transparent;
-  color: #4d8bff;
-
-  font-size: 22px;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.AddChannel:hover {
-  background: rgba(77, 139, 255, 0.08);
+  background-color: var(--surface-sunken);
+  box-shadow: inset -1px 0 0 var(--separator);
 }
 
 .ChannelsPanelHeader {
   display: flex;
-  padding: 24px 8px 24px 24px;
   align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  padding: 20px 12px 12px 20px;
+}
+
+.ChannelsPanelHeader h3 {
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-semibold);
+  /* Мелкий служебный текст: слегка разряжаем, иначе капс читается тяжело */
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.AddChannel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  margin-left: auto;
+
+  width: 28px;
+  height: 28px;
+
+  border: none;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+
+  transition:
+    transform var(--duration-instant) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+.AddChannel:hover {
+  background-color: var(--accent-soft);
+}
+
+/* Отклик на нажатии, а не на отпускании */
+.AddChannel:active {
+  transform: scale(0.9);
+  background-color: var(--accent-soft-active);
 }
 
 .channelsList {
   display: flex;
   flex-direction: column;
-  padding: 24px 8px 24px 24px;
+  gap: 2px;
+
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  padding: 4px 12px 20px;
   list-style: none;
-  gap: 10px;
 }
 
 .channelItem {

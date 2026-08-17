@@ -2,5 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100dvh;
+  padding: 24px 16px;
+  /* Вычитаем шапку, иначе страница длиннее экрана и карточка уезжает вниз */
+  min-height: calc(100dvh - var(--header-height));
 }

@@ -1,0 +1,20 @@
+/* Файл был пустым: у ссылок не было ни цвета, ни отклика на нажатие */
+.AppLink {
+  color: var(--accent);
+  text-decoration: none;
+  border-radius: var(--radius-xs);
+
+  transition:
+    opacity var(--duration-instant) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.AppLink:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* Отклик на нажатии, а не на отпускании */
+.AppLink:active {
+  opacity: 0.6;
+}
