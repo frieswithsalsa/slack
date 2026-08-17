@@ -1,19 +1,102 @@
 :root {
-  --font-family-main: Inter, "Times New Roman", Serif;
+  /* ---------- Typography ----------
+     Inter грузится с весами 400/500/600/700 — другие веса синтезируются, не использовать.
+     Фолбэк — системный sans, а не Serif. */
+  --font-family-main: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  --font-size-s: 14px;
-  --font-line-s: 22px;
+  /* Размеры в rem: масштабируются вместе с настройкой размера текста в браузере.
+     Трекинг зависит от размера: крупный текст поджимаем, мелкий слегка разряжаем. */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-line-xs: 1.34;
+  --font-track-xs: 0.005em;
+
+  --font-size-s: 0.875rem;    /* 14px */
+  --font-line-s: 1.45;
+  --font-track-s: 0;
   --font-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
 
-
-  --font-size-m: 16px;
-  --font-line-m: 24px;
+  --font-size-m: 1rem;        /* 16px */
+  --font-line-m: 1.5;
+  --font-track-m: -0.006em;
   --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
 
-  --font-size-l: 24px;
-  --font-line-l: 32px;
+  --font-size-l: 1.5rem;      /* 24px */
+  --font-line-l: 1.25;
+  --font-track-l: -0.018em;
   --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
 
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 
+  /* ---------- Colour ---------- */
+  --bg-color: #f8f9fa;
+  --surface: #ffffff;
+  --surface-sunken: #f8f9fa;
+
+  --text-primary: #1c1e21;
+  --text-secondary: #6c757d;
+  --text-placeholder: #9aa0ab;
+  --text-on-accent: #ffffff;
+
+  --separator: rgba(0, 0, 0, 0.08);
+  --separator-strong: rgba(0, 0, 0, 0.14);
+
+  /* Единственный акцент на весь проект */
+  --accent: #2f6bff;
+  --accent-hover: #1f5af0;
+  --accent-soft: rgba(47, 107, 255, 0.1);
+  --accent-soft-hover: rgba(47, 107, 255, 0.16);
+  --accent-soft-active: rgba(47, 107, 255, 0.22);
+  --accent-ring: rgba(47, 107, 255, 0.32);
+
+  --danger: #dc3545;
+  --danger-hover: #bb2d3b;
+  --danger-soft: rgba(220, 53, 69, 0.1);
+  --danger-soft-active: rgba(220, 53, 69, 0.16);
+  --danger-ring: rgba(220, 53, 69, 0.28);
+
+  --neutral-button: #6c757d;
+  --neutral-button-hover: #5c636a;
+
+  /* Подсветка при наведении/нажатии — поверх любого фона */
+  --fill-hover: rgba(60, 60, 67, 0.08);
+  --fill-active: rgba(60, 60, 67, 0.14);
+  --fill-on-dark-hover: rgba(255, 255, 255, 0.14);
+  --fill-on-dark-active: rgba(255, 255, 255, 0.22);
+
+  /* ---------- Materials ----------
+     Крупная поверхность читается «толще»: сильнее блюр и глубже тень. */
+  --material-chrome: rgba(255, 255, 255, 0.72);
+  --material-chrome-blur: blur(20px) saturate(180%);
+  --material-sunken: rgba(248, 249, 250, 0.76);
+  --material-edge: rgba(255, 255, 255, 0.5);
+  --scrim: rgba(0, 0, 0, 0.32);
+
+  /* ---------- Radius ---------- */
+  --radius-xs: 6px;
+  --radius-s: 10px;
+  --radius-m: 14px;
+  --radius-l: 20px;
+
+  /* ---------- Elevation ---------- */
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.06), 0 0 0 0.5px rgba(0, 0, 0, 0.04);
+  --shadow-2: 0 4px 16px rgba(0, 0, 0, 0.1), 0 0 0 0.5px rgba(0, 0, 0, 0.04);
+  --shadow-3: 0 24px 60px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  /* ---------- Motion ----------
+     Длительности короткие: отклик важнее «красивой» анимации.
+     --ease-spring даёт лёгкий перелёт, применять только там, где жест нёс инерцию. */
+  --duration-instant: 100ms;
+  --duration-fast: 160ms;
+  --duration-base: 240ms;
+  --duration-slow: 320ms;
+
+  --ease-out: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-in: cubic-bezier(1, 0, 0.68, 0.28); /* зеркальная к --ease-out */
+  --ease-spring: cubic-bezier(0.34, 1.36, 0.64, 1);
+
+  /* ---------- Layout ---------- */
   --header-height: 60px;
+  --touch-target: 32px;
 }

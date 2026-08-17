@@ -2,10 +2,33 @@
 @use "themes/light";
 @use "../variables/global";
 
+body {
+  color: var(--text-primary);
+  font: var(--font-m);
+  letter-spacing: var(--font-track-m);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
 .app {
   min-height: 100vh;
   background: var(--bg-color);
   font-family: var(--font-family-main);
+}
+
+/* Кольцо фокуса одно на весь проект: видно только при навигации с клавиатуры */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+/* Заголовки: чем крупнее текст, тем плотнее трекинг и интерлиньяж */
+h1,
+h2,
+h3 {
+  letter-spacing: var(--font-track-l);
+  line-height: var(--font-line-l);
 }
 
 .visuallyHidden {
@@ -18,4 +41,40 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* Сокращённое движение — это не «без обратной связи», а обратная связь без
+   перемещения: снимаем сдвиги, масштаб и перелёт, оставляем прозрачность и цвет. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: var(--duration-instant) !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Меньше прозрачности — материалы становятся плотными, блюр убираем */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --material-chrome: #ffffff;
+    --material-sunken: #f8f9fa;
+    --material-chrome-blur: none;
+    --scrim: rgba(0, 0, 0, 0.55);
+  }
+}
+
+/* Больше контраста — плотный фон плюс явная граница */
+@media (prefers-contrast: more) {
+  :root {
+    --material-chrome: #ffffff;
+    --material-sunken: #f2f3f5;
+    --material-chrome-blur: none;
+    --separator: rgba(0, 0, 0, 0.36);
+    --separator-strong: rgba(0, 0, 0, 0.5);
+    --text-secondary: #4a5057;
+    --text-placeholder: #5c636a;
+  }
 }

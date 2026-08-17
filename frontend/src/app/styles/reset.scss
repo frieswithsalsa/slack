@@ -4,6 +4,17 @@
   box-sizing: border-box;
 }
 
+html {
+  /* Не даём мобильному Safari самовольно увеличивать шрифт при повороте */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  /* Свою подсветку нажатия рисуем сами — системная синяя вспышка
+     на тач-устройствах только мешает и приходит с задержкой */
+  -webkit-tap-highlight-color: transparent;
+}
+
 input,
 button,
 textarea,
@@ -11,4 +22,12 @@ select {
   margin: 0;
 
   font: inherit;
+  color: inherit;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
 }
