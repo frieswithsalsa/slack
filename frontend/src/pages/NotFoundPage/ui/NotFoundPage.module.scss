@@ -1,0 +1,24 @@
+.NotFoundPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: calc(100vh - var(--header-height));
+  padding: 24px;
+  text-align: center;
+}
+
+.title {
+  font-size: var(--font-size-l);
+  font-weight: var(--font-weight-semibold);
+  /* Крупный текст: плотный трекинг */
+  letter-spacing: var(--font-track-l);
+}
+
+.hint {
+  font-size: var(--font-size-s);
+  letter-spacing: var(--font-track-s);
+  color: var(--text-secondary);
+}

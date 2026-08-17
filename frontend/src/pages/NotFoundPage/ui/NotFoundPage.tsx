@@ -1,9 +1,10 @@
-import React from 'react';
+import cls from './NotFoundPage.module.scss';
 
 const NotFoundPage = () => {
     return (
-        <div>
-            Page not found!
+        <div className={cls.NotFoundPage}>
+            <p className={cls.title}>Страница не найдена</p>
+            <p className={cls.hint}>Проверьте адрес или вернитесь в чат.</p>
         </div>
     );
 };
