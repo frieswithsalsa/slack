@@ -1,0 +1,128 @@
+/* Карточки входа и регистрации были двумя копиями одного файла на ~100 строк.
+   Одна форма — один источник правды: расхождение стилей теперь невозможно. */
+@mixin auth-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 400px;
+  max-width: 100%;
+  /* На узком экране отступы ужимаются, иначе поля становятся неоправданно узкими */
+  padding: clamp(28px, 8vw, 48px) clamp(20px, 6vw, 40px);
+
+  background-color: var(--surface);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-3);
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  input:not([type="submit"]) {
+    width: 100%;
+    min-height: 52px;
+    padding: 0 16px;
+
+    font: var(--font-m);
+    letter-spacing: var(--font-track-m);
+    color: var(--text-primary);
+    background-color: var(--surface);
+
+    border: 1.5px solid var(--separator-strong);
+    border-radius: var(--radius-s);
+    outline: none;
+    transition:
+      border-color var(--duration-fast) var(--ease-out),
+      box-shadow var(--duration-fast) var(--ease-out);
+
+    &::placeholder {
+      color: var(--text-placeholder);
+    }
+
+    &:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-ring);
+    }
+
+    &.inputError {
+      border-color: var(--danger);
+      outline: none;
+
+      &:focus {
+        border-color: var(--danger);
+        box-shadow: 0 0 0 3px var(--danger-ring);
+      }
+    }
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    min-height: 54px;
+
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--font-track-m);
+    color: var(--text-on-accent);
+    background-color: var(--accent);
+
+    border: none;
+    border-radius: var(--radius-s);
+    cursor: pointer;
+    transition:
+      transform var(--duration-instant) var(--ease-out),
+      background-color var(--duration-fast) var(--ease-out);
+
+    &:hover {
+      background-color: var(--accent-hover);
+    }
+
+    /* Отклик на нажатии, а не на отпускании */
+    &:active {
+      transform: scale(0.98);
+      background-color: var(--accent-hover);
+    }
+  }
+
+  .formTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: var(--font-size-l);
+    font-weight: var(--font-weight-semibold);
+    /* Крупный текст: плотный трекинг */
+    letter-spacing: var(--font-track-l);
+  }
+
+  .signupRow {
+    margin-top: 20px;
+    font-size: var(--font-size-s);
+    letter-spacing: var(--font-track-s);
+    text-align: center;
+    color: var(--text-secondary);
+  }
+
+  .signupLink {
+    margin-left: 4px;
+    font-weight: var(--font-weight-semibold);
+    color: var(--accent);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .errorText {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--font-track-xs);
+    color: var(--danger);
+  }
+}
