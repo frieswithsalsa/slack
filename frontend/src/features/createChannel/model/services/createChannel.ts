@@ -25,8 +25,7 @@ export const createChannel = createAsyncThunk<
 
             return response.data;
         } catch {
-            return thunkAPI.rejectWithValue('Не удалось создать канал')
+            return thunkAPI.rejectWithValue('errors.channelCreateFailed')
         }
     },
 )
-

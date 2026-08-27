@@ -24,7 +24,7 @@ export const fetchChannels = createAsyncThunk<
 
             return response.data;
         } catch {
-            return thunkAPI.rejectWithValue('Не удалось загрузить каналы');
+            return thunkAPI.rejectWithValue('errors.channelsLoadFailed');
         }
     },
 )

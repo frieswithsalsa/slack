@@ -22,8 +22,7 @@ export const removeChannel = createAsyncThunk<
 
             return response.data.id;
         } catch {
-            return thunkAPI.rejectWithValue('Не удалось удалить канал')
+            return thunkAPI.rejectWithValue('errors.channelRemoveFailed')
         }
     },
 )
-

@@ -1,0 +1,78 @@
+{
+  "app": {
+    "loading": "Loading..."
+  },
+  "auth": {
+    "login": {
+      "title": "Sign in",
+      "usernamePlaceholder": "Your nickname",
+      "passwordPlaceholder": "Your password",
+      "submit": "Sign in",
+      "noAccount": "No account?",
+      "signupLink": "Sign up"
+    },
+    "signup": {
+      "title": "Sign up",
+      "usernamePlaceholder": "e.g. shadow_ghost",
+      "passwordPlaceholder": "Your password",
+      "confirmPasswordPlaceholder": "Confirm your password",
+      "submit": "Create account"
+    }
+  },
+  "channels": {
+    "title": "Channels",
+    "add": "Add channel",
+    "manage": "Channel actions",
+    "rename": "Rename",
+    "remove": "Remove",
+    "create": {
+      "title": "Create channel",
+      "nameLabel": "Channel name",
+      "submit": "Create"
+    },
+    "renameModal": {
+      "title": "Rename channel",
+      "submit": "Rename"
+    },
+    "removeModal": {
+      "title": "Remove channel",
+      "confirmation": "Are you sure?"
+    }
+  },
+  "common": {
+    "cancel": "Cancel",
+    "close": "Close",
+    "logout": "Log out"
+  },
+  "messages": {
+    "count_one": "{{count}} message",
+    "count_few": "{{count}} messages",
+    "count_many": "{{count}} messages",
+    "count_other": "{{count}} messages",
+    "inputPlaceholder": "Type a message...",
+    "send": "Send message"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "hint": "Check the address or return to the chat."
+  },
+  "validation": {
+    "required": "Required field",
+    "nameLength": "3 to 20 characters",
+    "passwordMin": "Password must be at least 6 characters",
+    "passwordsMustMatch": "Passwords must match",
+    "channelAlreadyExists": "A channel with this name already exists",
+    "userAlreadyExists": "A user with this name already exists"
+  },
+  "errors": {
+    "authFailed": "Incorrect username or password",
+    "signupFailed": "Couldn’t create account",
+    "userAlreadyExists": "User already exists",
+    "channelsLoadFailed": "Couldn’t load channels",
+    "channelCreateFailed": "Couldn’t create channel",
+    "channelRenameFailed": "Couldn’t rename channel",
+    "channelRemoveFailed": "Couldn’t remove channel",
+    "messagesLoadFailed": "Couldn’t load messages",
+    "messageSendFailed": "Couldn’t send message"
+  }
+}

@@ -9,6 +9,7 @@ import cls from './CreateChannelModal.module.scss';
 import {createChannel} from "@/features/createChannel/model/services/createChannel";
 import {AppDispatch} from "@/app/store";
 import {Button} from "@/shared/ui/Button";
+import {useTranslation} from "react-i18next";
 
 interface CreateChannelModalProps {
     isOpen: boolean;
@@ -16,11 +17,12 @@ interface CreateChannelModalProps {
 }
 
 export const CreateChannelModal = ({isOpen, onClose}: CreateChannelModalProps) => {
+    const {t} = useTranslation();
     const channels = useSelector(selectChannels);
     const existingNames = channels.map((channel) => channel.name);
 
     const {register, handleSubmit, setFocus, reset, setError, formState: {errors, isSubmitting}} = useForm({
-        resolver: yupResolver(createChannelSchema(existingNames)),
+        resolver: yupResolver(createChannelSchema(existingNames, t)),
     });
 
     const dispatch = useDispatch<AppDispatch>();
@@ -37,24 +39,26 @@ export const CreateChannelModal = ({isOpen, onClose}: CreateChannelModalProps) =
             reset();
             onClose();
         } catch (e) {
-            setError('name', {message: typeof e === 'string' ? e : 'Не удалось создать канал'});
+            setError('name', {message: t(typeof e === 'string' ? e : 'errors.channelCreateFailed')});
         }
     };
 
 
     return (
-        <Modal title="Создать канал" isOpen={isOpen} onClose={onClose}>
+        <Modal title={t('channels.create.title')} isOpen={isOpen} onClose={onClose}>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input className={cls.input}
-                       aria-label="Имя канала"
+                       aria-label={t('channels.create.nameLabel')}
                        {...register('name')}
                 />
                 {errors.name && <p className={cls.errorText}>{errors.name.message}</p>}
                 <div className={cls.actions}>
                     <Button type="button" onClick={onClose} className={cls.cancelButton}
-                            disabled={isSubmitting}>Отменить
+                            disabled={isSubmitting}>{t('common.cancel')}
                     </Button>
-                    <Button type="submit" className={cls.submitButton} disabled={isSubmitting}>Создать</Button>
+                    <Button type="submit" className={cls.submitButton} disabled={isSubmitting}>
+                        {t('channels.create.submit')}
+                    </Button>
                 </div>
             </form>
         </Modal>

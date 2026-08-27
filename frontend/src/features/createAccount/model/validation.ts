@@ -1,18 +1,19 @@
+import type {TFunction} from "i18next";
 import * as yup from "yup";
 
-export const createAccountSchema = (existingNames: string[]) => yup.object({
+export const createAccountSchema = (existingNames: string[], t: TFunction) => yup.object({
     newUsername: yup.string()
         .trim()
-        .required('Обязательное поле')
-        .min(3, 'От 3 до 20 символов')
-        .max(20, 'От 3 до 20 символов')
-        .notOneOf(existingNames, 'Пользователь с таким именем уже существует'),
+        .required(t('validation.required'))
+        .min(3, t('validation.nameLength'))
+        .max(20, t('validation.nameLength'))
+        .notOneOf(existingNames, t('validation.userAlreadyExists')),
     newPassword: yup.string()
         .trim()
-        .required('Обязательное поле')
-        .min(6, 'Пароль не может быть менее 6 символов'),
+        .required(t('validation.required'))
+        .min(6, t('validation.passwordMin')),
     confirmNewPassword: yup.string()
-        .required('Обязательное поле')
-        .min(6, 'Пароль не может быть менее 6 символов')
-        .oneOf([yup.ref('newPassword')], 'Passwords must match')
+        .required(t('validation.required'))
+        .min(6, t('validation.passwordMin'))
+        .oneOf([yup.ref('newPassword')], t('validation.passwordsMustMatch'))
 }).required();

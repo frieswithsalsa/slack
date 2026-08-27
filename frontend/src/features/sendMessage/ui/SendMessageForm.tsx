@@ -7,12 +7,14 @@ import {selectActiveChannelId} from "@/entities/channel";
 import {selectUserName} from "@/entities/user";
 import {sendMessage} from "@/features/sendMessage/model/services/sendMessage";
 import {AppDispatch} from "@/app/store";
+import {useTranslation} from "react-i18next";
 
 interface SendMessageFormProps {
     className?: string;
 }
 
 export const SendMessageForm = ({className}: SendMessageFormProps) => {
+    const {t} = useTranslation();
 
     const [message, setMessage] = useState('');
     const [error, setError] = useState<string | null>(null);
@@ -57,7 +59,7 @@ export const SendMessageForm = ({className}: SendMessageFormProps) => {
             setMessage('');
             setError(null);
         } catch (e) {
-            setError('Не удалось отправить сообщение')
+            setError(t(typeof e === 'string' ? e : 'errors.messageSendFailed'))
         } finally {
             setIsSending(false);
         }
@@ -70,14 +72,14 @@ export const SendMessageForm = ({className}: SendMessageFormProps) => {
               className={classNames(cls.messageForm, {}, [className])}
         >
             <div className={cls.inputWrapper}>
-                <input placeholder="Введите сообщение..."
+                <input placeholder={t('messages.inputPlaceholder')}
                        type="text"
                        className={cls.messageInput}
                        onChange={onChange}
                        value={message}/>
                 <button
                     disabled={isSending}
-                    aria-label="Отправить сообщение"
+                    aria-label={t('messages.send')}
                     className={cls.sendButton}
                     type="submit">
                     <SendHorizontal size={20} strokeWidth={1.75}/>
@@ -87,4 +89,3 @@ export const SendMessageForm = ({className}: SendMessageFormProps) => {
         </form>
     );
 };
-

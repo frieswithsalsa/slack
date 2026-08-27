@@ -1,0 +1,78 @@
+{
+  "app": {
+    "loading": "Загрузка..."
+  },
+  "auth": {
+    "login": {
+      "title": "Войти",
+      "usernamePlaceholder": "Ваш ник",
+      "passwordPlaceholder": "Ваш пароль",
+      "submit": "Войти",
+      "noAccount": "Нет аккаунта?",
+      "signupLink": "Регистрация"
+    },
+    "signup": {
+      "title": "Регистрация",
+      "usernamePlaceholder": "например, shadow_ghost",
+      "passwordPlaceholder": "Ваш пароль",
+      "confirmPasswordPlaceholder": "Подтвердите пароль",
+      "submit": "Создать аккаунт"
+    }
+  },
+  "channels": {
+    "title": "Каналы",
+    "add": "Добавить канал",
+    "manage": "Управление каналом",
+    "rename": "Переименовать",
+    "remove": "Удалить",
+    "create": {
+      "title": "Создать канал",
+      "nameLabel": "Имя канала",
+      "submit": "Создать"
+    },
+    "renameModal": {
+      "title": "Переименовать канал",
+      "submit": "Переименовать"
+    },
+    "removeModal": {
+      "title": "Удалить канал",
+      "confirmation": "Уверены?"
+    }
+  },
+  "common": {
+    "cancel": "Отменить",
+    "close": "Закрыть",
+    "logout": "Выйти"
+  },
+  "messages": {
+    "count_one": "{{count}} сообщение",
+    "count_few": "{{count}} сообщения",
+    "count_many": "{{count}} сообщений",
+    "count_other": "{{count}} сообщения",
+    "inputPlaceholder": "Введите сообщение...",
+    "send": "Отправить сообщение"
+  },
+  "notFound": {
+    "title": "Страница не найдена",
+    "hint": "Проверьте адрес или вернитесь в чат."
+  },
+  "validation": {
+    "required": "Обязательное поле",
+    "nameLength": "От 3 до 20 символов",
+    "passwordMin": "Пароль должен быть не короче 6 символов",
+    "passwordsMustMatch": "Пароли должны совпадать",
+    "channelAlreadyExists": "Канал с таким именем уже существует",
+    "userAlreadyExists": "Пользователь с таким именем уже существует"
+  },
+  "errors": {
+    "authFailed": "Неверное имя пользователя или пароль",
+    "signupFailed": "Не удалось создать аккаунт",
+    "userAlreadyExists": "Пользователь уже существует",
+    "channelsLoadFailed": "Не удалось загрузить каналы",
+    "channelCreateFailed": "Не удалось создать канал",
+    "channelRenameFailed": "Не удалось переименовать канал",
+    "channelRemoveFailed": "Не удалось удалить канал",
+    "messagesLoadFailed": "Не удалось загрузить сообщения",
+    "messageSendFailed": "Не удалось отправить сообщение"
+  }
+}

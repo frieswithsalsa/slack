@@ -13,53 +13,53 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        children: "Создать",
+        children: "Create",
     },
 };
 
 export const Disabled: Story = {
     args: {
-        children: "Создать",
+        children: "Create",
         disabled: true,
     },
 };
 
 export const LongText: Story = {
     args: {
-        children: 'Сохранить изменения и продолжить',
+        children: 'Save changes and continue',
     },
-        decorators: [
-            (Story) => (
-                <div style={{ width: '230px' }}>
-    <Story />
-    </div>
-            ),
-        ],
+    decorators: [
+        (Story) => (
+            <div style={{ width: '230px' }}>
+                <Story />
+            </div>
+        ),
+    ],
 };
 
 export const WithIcon: Story = {
     args: {
         children: <>
             <Save size={16} aria-hidden="true" />
-            Сохранить
+            Save
         </>,
     },
 };
 
 export const WithCustomClass: Story = {
     args: {
-        children: 'Сохранить',
+        children: 'Save',
         className: styles.primaryAction
     },
 };
 
 export const Click: Story = {
     args: {
-        children: 'Сохранить',
+        children: 'Save',
         onClick: fn()
     },
     play: async ({ args, canvas, userEvent }) => {
-        const button = canvas.getByRole('button', { name: 'Сохранить' });
+        const button = canvas.getByRole('button', { name: 'Save' });
 
         await userEvent.click(button);
 

@@ -21,7 +21,7 @@ export const authByUsername = createAsyncThunk<
 
             return response.data;
         } catch {
-            return thunkAPI.rejectWithValue("Authentication failed. Check your username or password")
+            return thunkAPI.rejectWithValue("errors.authFailed")
         }
     },
 )

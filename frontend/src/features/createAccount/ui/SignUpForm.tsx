@@ -11,12 +11,14 @@ import {AppDispatch} from "@/app/store";
 import {SignUpFormData} from "@/features/createAccount/model/types";
 import {createAccountSchema} from "@/features/createAccount/model/validation";
 import {createAccount} from "@/features/createAccount/model/services/createAccount";
+import {useTranslation} from "react-i18next";
 
 interface RegisterFormProps {
     className?: string;
 }
 
 export const SignUpForm = ({className}: RegisterFormProps) => {
+    const {t} = useTranslation();
     const [authError, setAuthError] = useState<string | null>(null);
     const navigate = useNavigate();
 
@@ -25,7 +27,7 @@ export const SignUpForm = ({className}: RegisterFormProps) => {
         handleSubmit,
         formState: {errors},
     } = useForm<SignUpFormData>({
-        resolver: yupResolver(createAccountSchema([])),
+        resolver: yupResolver(createAccountSchema([], t)),
     });
 
     const dispatch = useDispatch<AppDispatch>();
@@ -40,7 +42,7 @@ export const SignUpForm = ({className}: RegisterFormProps) => {
         } catch (e) {
             if (e) {
                 setAuthError(
-                    typeof e === "string" ? e : "Не удалось создать нового пользователя",
+                    t(typeof e === "string" ? e : "errors.signupFailed"),
                 );
             }
         }
@@ -48,13 +50,13 @@ export const SignUpForm = ({className}: RegisterFormProps) => {
 
     return (
         <div className={classNames(cls.RegisterForm, {}, [className])}>
-            <div className={classNames(cls.formTitle, {}, [])}>Регистрация</div>
+            <div className={classNames(cls.formTitle, {}, [])}>{t('auth.signup.title')}</div>
             <form
                 className={classNames(cls.form, {}, [])}
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <input
-                    placeholder="e.g. shadow_ghost"
+                    placeholder={t('auth.signup.usernamePlaceholder')}
                     {...register("newUsername")}
                     className={classNames(
                         cls.formInput,
@@ -66,7 +68,7 @@ export const SignUpForm = ({className}: RegisterFormProps) => {
                     <p className={cls.errorText}>{errors.newUsername.message}</p>
                 )}
                 <input
-                    placeholder="Your password"
+                    placeholder={t('auth.signup.passwordPlaceholder')}
                     type={"password"}
                     {...register("newPassword")}
                     className={classNames(
@@ -79,7 +81,7 @@ export const SignUpForm = ({className}: RegisterFormProps) => {
                     <p className={cls.errorText}>{errors.newPassword.message}</p>
                 )}
                 <input
-                    placeholder="Confirm your password"
+                    placeholder={t('auth.signup.confirmPasswordPlaceholder')}
                     type={"password"}
                     {...register("confirmNewPassword")}
                     className={classNames(
@@ -91,7 +93,7 @@ export const SignUpForm = ({className}: RegisterFormProps) => {
                 {errors.confirmNewPassword && (
                     <p className={cls.errorText}>{errors.confirmNewPassword.message}</p>
                 )}
-                <input type="submit"/>
+                <input type="submit" value={t('auth.signup.submit')}/>
                 {authError && <p className={cls.errorText}>{authError}</p>}
             </form>
         </div>

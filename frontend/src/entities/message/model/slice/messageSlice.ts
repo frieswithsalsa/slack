@@ -32,7 +32,7 @@ const messageSlice = createSlice({
             })
             .addCase(fetchMessages.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload ?? 'Не удалось запросить список сообщений';
+                state.error = action.payload ?? 'errors.messagesLoadFailed';
             })
             .addCase(channelRemoved, (state, action) => {
                 state.items = state.items.filter(item => item.channelId !== action.payload)

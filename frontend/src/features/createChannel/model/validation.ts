@@ -1,11 +1,12 @@
+import type {TFunction} from 'i18next';
 import * as yup from 'yup';
 
-export const createChannelSchema = (existingNames: string[]) =>
+export const createChannelSchema = (existingNames: string[], t: TFunction) =>
     yup.object({
         name: yup.string()
             .trim()
-            .required('Обязательное поле')
-            .min(3, 'От 3 до 20 символов')
-            .max(20, 'От 3 до 20 символов')
-            .notOneOf(existingNames, 'Канал с таким именем уже существует'),
+            .required(t('validation.required'))
+            .min(3, t('validation.nameLength'))
+            .max(20, t('validation.nameLength'))
+            .notOneOf(existingNames, t('validation.channelAlreadyExists')),
     });

@@ -24,7 +24,7 @@ export const fetchMessages = createAsyncThunk<
 
             return response.data;
         } catch {
-            return thunkAPI.rejectWithValue('Не удалось загрузить сообщения');
+            return thunkAPI.rejectWithValue('errors.messagesLoadFailed');
         }
     },
 )

@@ -46,7 +46,7 @@ const channelSlice = createSlice({
             })
             .addCase(createChannel.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload ?? 'Не удалось создать канал';
+                state.error = action.payload ?? 'errors.channelCreateFailed';
             })
             .addCase(fetchChannels.pending, (state) => {
                 state.isLoading = true
@@ -59,7 +59,7 @@ const channelSlice = createSlice({
             })
             .addCase(fetchChannels.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload ?? 'Не удалось запросить список каналов';
+                state.error = action.payload ?? 'errors.channelsLoadFailed';
             })
     }
 });

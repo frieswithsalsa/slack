@@ -25,7 +25,7 @@ export const sendMessage = createAsyncThunk<
             );
             return response.data
         } catch {
-            return thunkAPI.rejectWithValue('Не удалось отправить сообщение');
+            return thunkAPI.rejectWithValue('errors.messageSendFailed');
         }
     }
 )

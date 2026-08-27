@@ -22,10 +22,10 @@ export const createAccount = createAsyncThunk<
             return response.data;
         } catch (e) {
             if (axios.isAxiosError(e) && e.response?.status === 409) {
-                return thunkAPI.rejectWithValue("User already exists");
+                return thunkAPI.rejectWithValue("errors.userAlreadyExists");
 
             }
-            return thunkAPI.rejectWithValue("Sign up failed.")
+            return thunkAPI.rejectWithValue("errors.signupFailed")
         }
     },
 )

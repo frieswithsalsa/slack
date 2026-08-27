@@ -24,8 +24,7 @@ export const renameChannel = createAsyncThunk<
 
             return response.data;
         } catch {
-            return thunkAPI.rejectWithValue('Не удалось переименовать канал')
+            return thunkAPI.rejectWithValue('errors.channelRenameFailed')
         }
     },
 )
-

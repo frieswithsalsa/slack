@@ -3,6 +3,7 @@ import {logout} from "@/entities/user";
 import {Button} from "@/shared/ui/Button";
 import {classNames} from "@/shared/lib/classNames";
 import {useDispatch} from "react-redux";
+import {useTranslation} from "react-i18next";
 
 
 interface LogoutButtonProps {
@@ -10,6 +11,7 @@ interface LogoutButtonProps {
 }
 
 export const LogoutButton = ({className, }: LogoutButtonProps) => {
+    const {t} = useTranslation();
     const dispatch = useDispatch();
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -18,7 +20,7 @@ export const LogoutButton = ({className, }: LogoutButtonProps) => {
 
     return (
         <Button onClick={handleClick} className={classNames(cls.LogoutButton, {}, [className])}>
-            Выйти
+            {t('common.logout')}
         </Button>
     );
 };

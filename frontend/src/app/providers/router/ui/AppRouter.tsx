@@ -3,12 +3,14 @@ import {Route, Routes, Navigate} from "react-router-dom";
 import {RouteConfig, AppRouteProps} from "@/shared/config/routeConfig/routeConfig";
 import {useSelector} from "react-redux";
 import {selectIsAuthed} from "@/entities/user";
+import {useTranslation} from "react-i18next";
 
 const AppRouter = () => {
+    const {t} = useTranslation();
     const isAuthed = useSelector(selectIsAuthed);
 
     return (
-        <Suspense fallback={<div>Loading</div>}>
+        <Suspense fallback={<div>{t('app.loading')}</div>}>
 
             <Routes>
                 {Object.values(RouteConfig).map(({element, path, authOnly}: AppRouteProps) => (

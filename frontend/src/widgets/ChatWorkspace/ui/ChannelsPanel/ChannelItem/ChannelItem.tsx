@@ -5,6 +5,7 @@ import {Channel} from "@/entities/channel/model/types/types";
 import {useOnClickOutside} from "@/shared/lib/hooks/useOnClickOutside";
 import {ChannelButton} from "@/entities/channel";
 import {ChevronDown} from "lucide-react";
+import {useTranslation} from "react-i18next";
 
 interface ChannelItemProps {
     className?: string;
@@ -23,6 +24,7 @@ export const ChannelItem = ({
                                 onRename,
                                 className
                             }: ChannelItemProps) => {
+    const {t} = useTranslation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const rootRef = useRef<HTMLDivElement>(null);
@@ -48,7 +50,7 @@ export const ChannelItem = ({
                         onClick={handleClick}
                 >
                     <ChevronDown/>
-                    <span className="visuallyHidden">Управление каналом</span>
+                    <span className="visuallyHidden">{t('channels.manage')}</span>
                 </button>
             )}
 
@@ -57,12 +59,12 @@ export const ChannelItem = ({
                     <button className={cls.menuItem} type="button" onClick={() => {
                         setIsMenuOpen(false);
                         onRename();
-                    }}>Переименовать
+                    }}>{t('channels.rename')}
                     </button>
                     <button className={classNames(cls.menuItem, {}, [cls.menuItemDanger])} type="button" onClick={() => {
                         setIsMenuOpen(false);
                         onRemove();
-                    }}>Удалить
+                    }}>{t('channels.remove')}
                     </button>
                 </div>
             )}

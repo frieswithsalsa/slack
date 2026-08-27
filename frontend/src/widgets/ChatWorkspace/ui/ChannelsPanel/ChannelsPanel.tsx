@@ -9,6 +9,7 @@ import {CreateChannelModal} from '@/features/createChannel'
 import {ChannelItem} from "@/widgets/ChatWorkspace/ui/ChannelsPanel/ChannelItem/ChannelItem";
 import {RemoveChannelModal} from '@/features/removeChannel'
 import {RenameChannelModal} from '@/features/renameChannel';
+import {useTranslation} from "react-i18next";
 
 
 interface ChannelsPanelProps {
@@ -16,6 +17,7 @@ interface ChannelsPanelProps {
 }
 
 export const ChannelsPanel = ({className}: ChannelsPanelProps) => {
+    const {t} = useTranslation();
 
     const channels = useSelector(selectChannels)
     const dispatch = useDispatch<AppDispatch>();
@@ -29,9 +31,10 @@ export const ChannelsPanel = ({className}: ChannelsPanelProps) => {
     return (
         <div className={classNames(cls.ChannelsPanel, {}, [className])}>
             <div className={cls.ChannelsPanelHeader}>
-                <h3>Channels</h3>
+                <h3>{t('channels.title')}</h3>
                 <button
                     type='button'
+                    aria-label={t('channels.add')}
                     className={cls.AddChannel}
                     onClick={() => {
                         setIsModalOpen(true)
@@ -71,4 +74,3 @@ export const ChannelsPanel = ({className}: ChannelsPanelProps) => {
         </div>
     );
 };
-
