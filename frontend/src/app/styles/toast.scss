@@ -1,0 +1,110 @@
+/* Тосты react-toastify приведены к системе проекта.
+   Двойной класс в селекторах — не украшательство: библиотека внедряет свои
+   стили сама, и порядок подключения не гарантирован. Удвоение поднимает
+   специфичность до (0,2,0) и делает переопределение независимым от порядка. */
+
+/* Цвет несёт только глиф — поверхность остаётся нейтральной.
+   Красный тот же, что у кнопки удаления: два разных красных в одном
+   интерфейсе читаются как два разных по смыслу состояния. */
+.Toastify__toast.Toastify__toast {
+  --toastify-icon-color-success: var(--success);
+  --toastify-icon-color-error: var(--danger);
+  --toastify-icon-color-info: var(--accent);
+}
+
+.Toastify__toast-container.Toastify__toast-container {
+  width: 340px;
+  /* Выше модалки (1000): уведомление не должно оказаться под её затемнением */
+  z-index: 1100;
+}
+
+/* Плавающий слой — тот же материал, что у шапки.
+   Свойства заданы напрямую, а не через --toastify-*: библиотека объявляет
+   эти переменные на :root сама, и при её подключении после нашего файла
+   выигрывает её объявление. */
+.Toastify__toast.Toastify__toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-height: 0;
+  padding: 12px;
+
+  font: var(--font-s);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-track-s);
+  color: var(--text-primary);
+
+  /* Не --material-chrome: тост ложится на светлый контент, а не на фон страницы,
+     и более разреженный материал начинает просвечивать текстом под ним */
+  background: var(--material-raised);
+  backdrop-filter: var(--material-chrome-blur);
+  -webkit-backdrop-filter: var(--material-chrome-blur);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-2);
+}
+
+.Toastify__toast-icon.Toastify__toast-icon {
+  flex: 0 0 auto;
+  width: 20px;
+  /* Отступ задаёт gap контейнера, иначе он удваивается */
+  margin-inline-end: 0;
+}
+
+.Toastify__close-button.Toastify__close-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  align-self: center;
+
+  width: 28px;
+  height: 28px;
+  padding: 0;
+
+  opacity: 1;
+  color: var(--text-secondary);
+  border-radius: var(--radius-xs);
+
+  transition:
+    transform var(--duration-instant) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.Toastify__close-button.Toastify__close-button:hover {
+  color: var(--text-primary);
+  background-color: var(--fill-hover);
+}
+
+/* Отклик на нажатии, а не на отпускании */
+.Toastify__close-button.Toastify__close-button:active {
+  transform: scale(0.9);
+  background-color: var(--fill-active);
+}
+
+.Toastify__close-button.Toastify__close-button svg {
+  width: 14px;
+  height: 16px;
+}
+
+@media only screen and (max-width: 480px) {
+  .Toastify__toast-container.Toastify__toast-container {
+    width: 100vw;
+    padding: 0 12px;
+  }
+
+  /* На узком экране уведомление приходит сверху: снизу оно ложится
+     ровно на поле ввода сообщения и перекрывает его */
+  .Toastify__toast-container--bottom-right.Toastify__toast-container--bottom-right {
+    top: calc(env(safe-area-inset-top) + var(--header-height) + 12px);
+    bottom: auto;
+  }
+
+  .Toastify__toast.Toastify__toast {
+    margin-bottom: 10px;
+    /* Библиотека на мобильном делает тост во всю ширину без скруглений —
+       возвращаем ему вид отдельной поверхности */
+    border-radius: var(--radius-m);
+  }
+}

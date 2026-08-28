@@ -1,6 +1,7 @@
 @use "reset";
 @use "themes/light";
 @use "../variables/global";
+@use "toast";
 
 body {
   color: var(--text-primary);
@@ -60,6 +61,7 @@ h3 {
 @media (prefers-reduced-transparency: reduce) {
   :root {
     --material-chrome: #ffffff;
+    --material-raised: #ffffff;
     --material-sunken: #f8f9fa;
     --material-chrome-blur: none;
     --scrim: rgba(0, 0, 0, 0.55);
@@ -70,6 +72,7 @@ h3 {
 @media (prefers-contrast: more) {
   :root {
     --material-chrome: #ffffff;
+    --material-raised: #ffffff;
     --material-sunken: #f2f3f5;
     --material-chrome-blur: none;
     --separator: rgba(0, 0, 0, 0.36);
