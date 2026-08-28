@@ -5,7 +5,7 @@ import {
     addChannel,
     channelRenamed
 } from "@/entities/channel/model/slice/channelSlice";
-import {selectChannels, selectActiveChannel, selectActiveChannelId} from "@/entities/channel/model/selectors/selectors";
+import {selectChannels, selectActiveChannel, selectActiveChannelId, selectChannelsFetchError} from "@/entities/channel/model/selectors/selectors";
 import type {Channel} from "@/entities/channel/model/types/types";
 
 export {
@@ -14,6 +14,7 @@ export {
     selectChannels,
     selectActiveChannel,
     selectActiveChannelId,
+    selectChannelsFetchError,
     Channel,
     channelRemoved,
     addChannel,

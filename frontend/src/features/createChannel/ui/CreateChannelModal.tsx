@@ -10,6 +10,7 @@ import {createChannel} from "@/features/createChannel/model/services/createChann
 import {AppDispatch} from "@/app/store";
 import {Button} from "@/shared/ui/Button";
 import {useTranslation} from "react-i18next";
+import {toast} from 'react-toastify';
 
 interface CreateChannelModalProps {
     isOpen: boolean;
@@ -38,8 +39,10 @@ export const CreateChannelModal = ({isOpen, onClose}: CreateChannelModalProps) =
             await dispatch(createChannel({name})).unwrap();
             reset();
             onClose();
+            toast.success(t('toasts.channelCreated'));
         } catch (e) {
             setError('name', {message: t(typeof e === 'string' ? e : 'errors.channelCreateFailed')});
+            toast.error(t('toasts.channelCreateFailed'));
         }
     };
 

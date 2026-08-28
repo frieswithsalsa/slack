@@ -1,7 +1,7 @@
 import {classNames} from "@/shared/lib/classNames";
 import cls from './ChatWorkspace.module.scss'
 import {ChannelsPanel} from "@/widgets/ChatWorkspace/ui/ChannelsPanel/ChannelsPanel";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch} from "@/app/store";
 import {useEffect} from "react";
 import {fetchChannels} from "@/entities/channel/model/services/fetchChannels";
@@ -9,7 +9,9 @@ import {ChatPanel} from "@/widgets/ChatWorkspace/ui/ChatPanel/ChatPanel";
 import {fetchMessages} from "@/entities/message/model/services/fetchMessages";
 import {socket} from '@/shared/api/socket';
 import {addMessage, MessageType} from "@/entities/message";
-import {addChannel, channelRemoved, channelRenamed, Channel} from "@/entities/channel";
+import {addChannel, channelRemoved, channelRenamed, Channel, selectChannelsFetchError} from "@/entities/channel";
+import {toast} from "react-toastify";
+import {useTranslation} from "react-i18next";
 
 
 interface ChatWorkspaceProps {
@@ -19,7 +21,10 @@ interface ChatWorkspaceProps {
 
 export const ChatWorkspace = ({className}: ChatWorkspaceProps) => {
 
+    const {t} = useTranslation();
     const dispatch = useDispatch<AppDispatch>();
+
+    const fetchError = useSelector(selectChannelsFetchError);
 
 
     useEffect(() => {
@@ -74,6 +79,12 @@ export const ChatWorkspace = ({className}: ChatWorkspaceProps) => {
     }, [dispatch]);
 
     useEffect(() => {
+        if (fetchError) {
+            toast.error(t('toasts.channelsLoadFailed'));
+        }
+    }, [fetchError, t]);
+
+    useEffect(() => {
         dispatch(fetchMessages());
     }, [dispatch]);
 
@@ -85,4 +96,3 @@ export const ChatWorkspace = ({className}: ChatWorkspaceProps) => {
         </div>
     );
 };
-

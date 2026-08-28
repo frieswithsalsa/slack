@@ -56,6 +56,15 @@
     "title": "Страница не найдена",
     "hint": "Проверьте адрес или вернитесь в чат."
   },
+  "toasts": {
+    "channelCreated": "Канал создан",
+    "channelRenamed": "Канал переименован",
+    "channelRemoved": "Канал удален",
+    "channelCreateFailed": "Не удалось создать канал",
+    "channelRenameFailed": "Не удалось переименовать канал",
+    "channelRemoveFailed": "Не удалось удалить канал",
+    "channelsLoadFailed": "Не удалось загрузить каналы"
+  },
   "validation": {
     "required": "Обязательное поле",
     "nameLength": "От 3 до 20 символов",

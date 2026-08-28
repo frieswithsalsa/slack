@@ -56,6 +56,15 @@
     "title": "Page not found",
     "hint": "Check the address or return to the chat."
   },
+  "toasts": {
+    "channelCreated": "Channel created",
+    "channelRenamed": "Channel renamed",
+    "channelRemoved": "Channel removed",
+    "channelCreateFailed": "Couldn’t create channel",
+    "channelRenameFailed": "Couldn’t rename channel",
+    "channelRemoveFailed": "Couldn’t remove channel",
+    "channelsLoadFailed": "Couldn’t load channels"
+  },
   "validation": {
     "required": "Required field",
     "nameLength": "3 to 20 characters",

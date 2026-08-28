@@ -10,6 +10,7 @@ import {renameChannel} from "@/features/renameChannel/model/services/renameChann
 import {AppDispatch} from "@/app/store";
 import {Button} from "@/shared/ui/Button";
 import {useTranslation} from "react-i18next";
+import {toast} from "react-toastify";
 
 interface RenameChannelModalProps {
     channelId: string;
@@ -42,8 +43,10 @@ export const RenameChannelModal = ({isOpen, onClose, channelId}: RenameChannelMo
             await dispatch(renameChannel({id: channelId, name})).unwrap();
             reset();
             onClose();
+            toast.success(t('toasts.channelRenamed'));
         } catch (e) {
             setError('name', {message: t(typeof e === 'string' ? e : 'errors.channelRenameFailed')});
+            toast.error(t('toasts.channelRenameFailed'));
         }
     };
 

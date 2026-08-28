@@ -8,7 +8,7 @@ const initialState: ChannelState = {
     items: [],
     activeChannelId: null,
     isLoading: false,
-    error: null,
+    fetchError: null,
 }
 
 const channelSlice = createSlice({
@@ -37,20 +37,19 @@ const channelSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(createChannel.pending, (state) => {
-                state.isLoading = true
-                state.error = null
+                state.isLoading = true;
             })
             .addCase(createChannel.fulfilled, (state, action) => {
-                state.isLoading = false
-                state.activeChannelId = action.payload.id
-            })
-            .addCase(createChannel.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload ?? 'errors.channelCreateFailed';
+                state.activeChannelId = action.payload.id;
             })
+            .addCase(createChannel.rejected, (state) => {
+                state.isLoading = false;
+            })
+
             .addCase(fetchChannels.pending, (state) => {
-                state.isLoading = true
-                state.error = null
+                state.isLoading = true;
+                state.fetchError = null;
             })
             .addCase(fetchChannels.fulfilled, (state, action) => {
                 state.isLoading = false;
@@ -59,8 +58,9 @@ const channelSlice = createSlice({
             })
             .addCase(fetchChannels.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload ?? 'errors.channelsLoadFailed';
-            })
+                state.fetchError =
+                    action.payload ?? 'errors.channelsLoadFailed';
+            });
     }
 });
 

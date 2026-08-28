@@ -6,6 +6,7 @@ import {removeChannel} from "@/features/removeChannel/model/services/removeChann
 import {Modal} from "@/shared/ui/Modal";
 import {Button} from "@/shared/ui/Button";
 import {useTranslation} from "react-i18next";
+import {toast} from "react-toastify";
 
 interface RemoveChannelModalProps {
     className?: string;
@@ -26,8 +27,10 @@ export const RemoveChannelModal = ({className, channelId, onClose, isOpen}: Remo
         try {
             await dispatch(removeChannel(channelId)).unwrap();
             onClose()
+            toast.success(t('toasts.channelRemoved'));
         } catch (e) {
             setError(t(typeof e === 'string' ? e : 'errors.channelRemoveFailed'));
+            toast.error(t('toasts.channelRemoveFailed'));
         } finally {
             setIsPending(false);
         }
