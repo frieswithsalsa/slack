@@ -45,8 +45,9 @@ export const RenameChannelModal = ({isOpen, onClose, channelId}: RenameChannelMo
             onClose();
             toast.success(t('toasts.channelRenamed'));
         } catch (e) {
-            setError('name', {message: t(typeof e === 'string' ? e : 'errors.channelRenameFailed')});
-            toast.error(t('toasts.channelRenameFailed'));
+            const message = t(typeof e === 'string' ? e : 'errors.channelRenameFailed');
+            setError('name', {message});
+            toast.error(message);
         }
     };
 

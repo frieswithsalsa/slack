@@ -42,10 +42,6 @@ const requiredKeys = [
     'toasts.channelCreated',
     'toasts.channelRenamed',
     'toasts.channelRemoved',
-    'toasts.channelCreateFailed',
-    'toasts.channelRenameFailed',
-    'toasts.channelRemoveFailed',
-    'toasts.channelsLoadFailed',
     'validation.required',
     'validation.nameLength',
     'validation.passwordMin',
@@ -61,6 +57,7 @@ const requiredKeys = [
     'errors.channelRemoveFailed',
     'errors.messagesLoadFailed',
     'errors.messageSendFailed',
+    'errors.connectionLost',
 ] as const;
 
 const collectKeys = (value: unknown, prefix = ''): string[] => {

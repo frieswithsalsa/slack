@@ -2,6 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {Message, MessageState} from "@/entities/message/model/types/types";
 import {fetchMessages} from "@/entities/message/model/services/fetchMessages";
 import {channelRemoved} from "@/entities/channel";
+import {RootState} from "@/app/store";
 
 const initialState: MessageState = {
     items: [],
@@ -42,5 +43,7 @@ const messageSlice = createSlice({
 
 
 export const {setMessages, addMessage} = messageSlice.actions;
+
+export const selectMessagesError = (state: RootState) => state.message.error;
 
 export default messageSlice.reducer;

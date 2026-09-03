@@ -41,8 +41,9 @@ export const CreateChannelModal = ({isOpen, onClose}: CreateChannelModalProps) =
             onClose();
             toast.success(t('toasts.channelCreated'));
         } catch (e) {
-            setError('name', {message: t(typeof e === 'string' ? e : 'errors.channelCreateFailed')});
-            toast.error(t('toasts.channelCreateFailed'));
+            const message = t(typeof e === 'string' ? e : 'errors.channelCreateFailed');
+            setError('name', {message});
+            toast.error(message);
         }
     };
 

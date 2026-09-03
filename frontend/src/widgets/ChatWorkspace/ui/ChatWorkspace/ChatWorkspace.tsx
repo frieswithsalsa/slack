@@ -3,7 +3,7 @@ import cls from './ChatWorkspace.module.scss'
 import {ChannelsPanel} from "@/widgets/ChatWorkspace/ui/ChannelsPanel/ChannelsPanel";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch} from "@/app/store";
-import {useEffect} from "react";
+import {useEffect, useRef} from "react";
 import {fetchChannels} from "@/entities/channel/model/services/fetchChannels";
 import {ChatPanel} from "@/widgets/ChatWorkspace/ui/ChatPanel/ChatPanel";
 import {fetchMessages} from "@/entities/message/model/services/fetchMessages";
@@ -12,6 +12,7 @@ import {addMessage, MessageType} from "@/entities/message";
 import {addChannel, channelRemoved, channelRenamed, Channel, selectChannelsFetchError} from "@/entities/channel";
 import {toast} from "react-toastify";
 import {useTranslation} from "react-i18next";
+import {selectMessagesError} from "@/entities/message/model/slice/messageSlice";
 
 
 interface ChatWorkspaceProps {
@@ -24,21 +25,10 @@ export const ChatWorkspace = ({className}: ChatWorkspaceProps) => {
     const {t} = useTranslation();
     const dispatch = useDispatch<AppDispatch>();
 
-    const fetchError = useSelector(selectChannelsFetchError);
+    const fetchChannelsError = useSelector(selectChannelsFetchError);
+    const fetchMessagesError = useSelector(selectMessagesError)
 
-
-    useEffect(() => {
-
-        const handleNewMessage = (payload: MessageType) => {
-            dispatch(addMessage(payload));
-        }
-
-        socket.on('newMessage', handleNewMessage);
-
-        return () => {
-            socket.off('newMessage', handleNewMessage);
-        };
-    }, [dispatch]);
+    const toastIdRef = useRef<string | number | null>(null);
 
     useEffect(() => {
 
@@ -75,18 +65,46 @@ export const ChatWorkspace = ({className}: ChatWorkspaceProps) => {
     }, [dispatch]);
 
     useEffect(() => {
+        const handleNewMessage = (payload: MessageType) => {
+            dispatch(addMessage(payload));
+        }
+        socket.on('newMessage', handleNewMessage);
+
+        return () => {
+            socket.off('newMessage', handleNewMessage);
+        };
+    }, [dispatch]);
+
+    useEffect(() => {
         dispatch(fetchChannels());
     }, [dispatch]);
 
     useEffect(() => {
-        if (fetchError) {
-            toast.error(t('toasts.channelsLoadFailed'));
+        if (fetchChannelsError) {
+            toast.error(t('errors.channelsLoadFailed'));
         }
-    }, [fetchError, t]);
+    }, [fetchChannelsError, t]);
 
     useEffect(() => {
         dispatch(fetchMessages());
     }, [dispatch]);
+
+    useEffect(() => {
+        if (fetchMessagesError) {
+            toast.error(t('errors.messagesLoadFailed'));
+        }
+    }, [fetchMessagesError, t]);
+
+    useEffect(() => {
+        const handleConnectionLost = (reason: string) => {
+            toast.error(t('errors.connectionLost'))
+        }
+        socket.on('disconnect', handleConnectionLost);
+
+        return () => {
+            socket.off('disconnect', handleConnectionLost);
+        }
+    }, [t]);
 
 
     return (

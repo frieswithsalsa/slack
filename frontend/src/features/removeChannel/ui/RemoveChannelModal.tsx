@@ -29,8 +29,9 @@ export const RemoveChannelModal = ({className, channelId, onClose, isOpen}: Remo
             onClose()
             toast.success(t('toasts.channelRemoved'));
         } catch (e) {
-            setError(t(typeof e === 'string' ? e : 'errors.channelRemoveFailed'));
-            toast.error(t('toasts.channelRemoveFailed'));
+            const message = t(typeof e === 'string' ? e : 'errors.channelRemoveFailed');
+            setError(message);
+            toast.error(message);
         } finally {
             setIsPending(false);
         }

@@ -59,11 +59,7 @@
   "toasts": {
     "channelCreated": "Channel created",
     "channelRenamed": "Channel renamed",
-    "channelRemoved": "Channel removed",
-    "channelCreateFailed": "Couldn’t create channel",
-    "channelRenameFailed": "Couldn’t rename channel",
-    "channelRemoveFailed": "Couldn’t remove channel",
-    "channelsLoadFailed": "Couldn’t load channels"
+    "channelRemoved": "Channel removed"
   },
   "validation": {
     "required": "Required field",
@@ -82,6 +78,7 @@
     "channelRenameFailed": "Couldn’t rename channel",
     "channelRemoveFailed": "Couldn’t remove channel",
     "messagesLoadFailed": "Couldn’t load messages",
-    "messageSendFailed": "Couldn’t send message"
+    "messageSendFailed": "Couldn’t send message",
+    "connectionLost": "Connection lost"
   }
 }

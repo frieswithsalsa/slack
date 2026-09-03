@@ -59,11 +59,7 @@
   "toasts": {
     "channelCreated": "Канал создан",
     "channelRenamed": "Канал переименован",
-    "channelRemoved": "Канал удален",
-    "channelCreateFailed": "Не удалось создать канал",
-    "channelRenameFailed": "Не удалось переименовать канал",
-    "channelRemoveFailed": "Не удалось удалить канал",
-    "channelsLoadFailed": "Не удалось загрузить каналы"
+    "channelRemoved": "Канал удален"
   },
   "validation": {
     "required": "Обязательное поле",
@@ -82,6 +78,7 @@
     "channelRenameFailed": "Не удалось переименовать канал",
     "channelRemoveFailed": "Не удалось удалить канал",
     "messagesLoadFailed": "Не удалось загрузить сообщения",
-    "messageSendFailed": "Не удалось отправить сообщение"
+    "messageSendFailed": "Не удалось отправить сообщение",
+    "connectionLost": "Соединение потеряно"
   }
 }
