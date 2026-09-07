@@ -31,7 +31,6 @@ export const ChatWorkspace = ({className}: ChatWorkspaceProps) => {
     const toastIdRef = useRef<string | number | null>(null);
 
     useEffect(() => {
-
         const handleNewChannel = (payload: Channel) => {
             dispatch(addChannel(payload));
         }
@@ -97,12 +96,23 @@ export const ChatWorkspace = ({className}: ChatWorkspaceProps) => {
 
     useEffect(() => {
         const handleConnectionLost = (reason: string) => {
-            toast.error(t('errors.connectionLost'))
+            if(toastIdRef.current) return
+            toastIdRef.current = toast.error(t('errors.connectionLost'), {autoClose: false})
         }
+
+        const handleConnectionRestored = () => {
+            if (!toastIdRef.current) return;
+            toast.dismiss(toastIdRef.current);
+            toastIdRef.current = null;
+        }
+
+        socket.on('connect', handleConnectionRestored);
+
         socket.on('disconnect', handleConnectionLost);
 
         return () => {
             socket.off('disconnect', handleConnectionLost);
+            socket.off('connect', handleConnectionRestored);
         }
     }, [t]);
 
