@@ -33,7 +33,7 @@ const userSlice = createSlice({
                 state.name = action.payload.username;
 
             })
-            .addCase(authByUsername.rejected, (state, action) => {
+            .addCase(authByUsername.rejected, (state) => {
                 state.isAuthed = false;
             })
             .addCase(createAccount.fulfilled, (state, action) => {

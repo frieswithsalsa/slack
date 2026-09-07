@@ -38,7 +38,7 @@ export const RemoveChannelModal = ({className, channelId, onClose, isOpen}: Remo
     }
     
     return (
-        <Modal title={t('channels.removeModal.title')} isOpen={isOpen} onClose={onClose}>
+        <Modal className={className} title={t('channels.removeModal.title')} isOpen={isOpen} onClose={onClose}>
             <p className={cls.message}>{t('channels.removeModal.confirmation')}</p>
             <div className={cls.actions}>
                 <Button type="button"

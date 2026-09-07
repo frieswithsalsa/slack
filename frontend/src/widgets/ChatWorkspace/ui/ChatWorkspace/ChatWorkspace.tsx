@@ -95,7 +95,7 @@ export const ChatWorkspace = ({className}: ChatWorkspaceProps) => {
     }, [fetchMessagesError, t]);
 
     useEffect(() => {
-        const handleConnectionLost = (reason: string) => {
+        const handleConnectionLost = () => {
             if(toastIdRef.current) return
             toastIdRef.current = toast.error(t('errors.connectionLost'), {autoClose: false})
         }

@@ -14,7 +14,7 @@ export const LogoutButton = ({className, }: LogoutButtonProps) => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
 
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const handleClick = () => {
         dispatch(logout());
     }
 
