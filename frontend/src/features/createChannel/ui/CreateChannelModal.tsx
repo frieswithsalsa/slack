@@ -3,7 +3,7 @@ import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useDispatch, useSelector} from 'react-redux';
 import {Modal} from '@/shared/ui/Modal';
-import {selectChannels} from '@/entities/channel';
+import {selectChannels, setActiveChannelId} from '@/entities/channel';
 import {createChannelSchema} from '../model/validation';
 import cls from './CreateChannelModal.module.scss';
 import {createChannel} from "@/features/createChannel/model/services/createChannel";
@@ -36,7 +36,8 @@ export const CreateChannelModal = ({isOpen, onClose}: CreateChannelModalProps) =
 
     const onSubmit = async ({name}: { name: string }) => {
         try {
-            await dispatch(createChannel({name})).unwrap();
+            const createdChannel = await dispatch(createChannel({name})).unwrap();
+            dispatch(setActiveChannelId(createdChannel.id));
             reset();
             onClose();
             toast.success(t('toasts.channelCreated'));

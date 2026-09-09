@@ -1,6 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {Channel, ChannelState} from "@/entities/channel/model/types/types";
-import {createChannel} from "@/features/createChannel/model/services/createChannel";
 import {fetchChannels} from "@/entities/channel/model/services/fetchChannels";
 import {DEFAULT_CHANNEL_ID} from "@/entities/channel/model/consts/consts";
 
@@ -36,17 +35,6 @@ const channelSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(createChannel.pending, (state) => {
-                state.isLoading = true;
-            })
-            .addCase(createChannel.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.activeChannelId = action.payload.id;
-            })
-            .addCase(createChannel.rejected, (state) => {
-                state.isLoading = false;
-            })
-
             .addCase(fetchChannels.pending, (state) => {
                 state.isLoading = true;
                 state.fetchError = null;
