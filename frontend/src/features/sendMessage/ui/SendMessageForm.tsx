@@ -8,6 +8,7 @@ import {selectUserName} from "@/entities/user";
 import {sendMessage} from "@/features/sendMessage/model/services/sendMessage";
 import {AppDispatch} from "@/app/store";
 import {useTranslation} from "react-i18next";
+import {profanityFilter} from "@/shared/lib/profanityFilter";
 
 interface SendMessageFormProps {
     className?: string;
@@ -31,7 +32,7 @@ export const SendMessageForm = ({className}: SendMessageFormProps) => {
 
     const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const formattedMessage = message.trim()
+        const formattedMessage = profanityFilter.clean(message.trim())
 
         if (formattedMessage.length === 0) {
             return
