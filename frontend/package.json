@@ -16,6 +16,7 @@
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
     "@reduxjs/toolkit": "^2.12.0",
+    "@rollbar/react": "^1.0.0",
     "@thesvg/react": "^3.0.10",
     "axios": "^1.16.1",
     "i18next": "^26.4.0",
@@ -30,6 +31,7 @@
     "react-redux": "^9.3.0",
     "react-router-dom": "^7.14.0",
     "react-toastify": "^11.1.0",
+    "rollbar": "^3.1.0",
     "socket.io-client": "^4.8.3",
     "yup": "^1.7.1"
   },
