@@ -11,11 +11,25 @@ func main() {
 		{ID: "2", Name: "random", Removable: true},
 	}
 
+	messages := []Message{
+		{
+			ID:        "1",
+			Username:  "admin",
+			Body:      "general",
+			ChannelID: "1",
+		},
+	}
+
 	mux := http.NewServeMux()
 
 	mux.Handle(
 		"/api/v1/channels",
 		channelsHandler(channels),
+	)
+
+	mux.Handle(
+		"/api/v1/messages",
+		messagesHandler(messages),
 	)
 
 	err := http.ListenAndServe(":5003", mux)

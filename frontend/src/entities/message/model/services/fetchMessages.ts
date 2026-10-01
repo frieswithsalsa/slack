@@ -14,7 +14,7 @@ export const fetchMessages = createAsyncThunk<
             const token = localStorage.getItem('authToken')
 
             const response = await axios.get<Message[]>(
-                '/api/v1/messages',
+                '/go-api/v1/messages',
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
